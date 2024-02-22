@@ -1,23 +1,16 @@
 import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
-import { UsuarioUpdateUsuarioDto } from "../../repository/interface";
-import { UsuarioRepository } from "../../repository/respository";
+import { UpdateModeloCaracteristicaDto } from "../../repository/interface";
+import { ModeloCaracteristicaRepository } from "../../repository/respository";
 
-class PutUsuarioUseCase {
-    constructor(private usuarioRepository: UsuarioRepository) { }
+class PutModeloCaracteristicaUseCase {
+    constructor(private modeloCaracteristicaRepository: ModeloCaracteristicaRepository) { }
 
-    async execute({ id, next, ...data }: UsuarioUpdateUsuarioDto) {
+    async execute({ id, next, ...data }: UpdateModeloCaracteristicaDto) {
         
-        const { password} = data
-        
-        
-        if (password) {
-            data.password = await hash( password! , 8);
-        }
-
-        return await this.usuarioRepository.update({ id, next, ...data})
+        return await this.modeloCaracteristicaRepository.update({ id, next, ...data})
 
     }
 }
 
-export { PutUsuarioUseCase };
+export { PutModeloCaracteristicaUseCase };

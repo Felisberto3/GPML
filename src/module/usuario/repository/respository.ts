@@ -27,8 +27,8 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
         return await prisma.usuario.findFirst({ 
             where: { id },
             include: {
-                Agencia: true,
-                modeloCaracteristica: true
+                modeloCaracteristica: true,
+                Agencia: true
             }
         })
     }
