@@ -14,7 +14,7 @@ class getUsuarioController {
 
         const usuario = await this.getUsuarioUseCase.execute(Number(id))
 
-        return res.status(201).json({ usuario  })
+        return res.status(200).json({ usuario })
     }
 }
 

@@ -19,11 +19,11 @@ class PostUsuarioController {
             throw new ServerError('Data types invalid', 400)
         }
 
-        const newUsuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto })
-        const payload = payloadGenerator(newUsuario.id, email)
+        const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto })
+        const payload = payloadGenerator(usuario.id, email)
 
         return res.status(201).json({
-            newUsuario,
+            usuario,
             payload
         })
     }
