@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts --watch",
+    "start": "nodemon ts-node  src/index.ts", 
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "git":"git add . && git commit -m 'update' "
+    "git": "git add . && git commit -m 'update' "
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.19",
     "@types/yup": "^0.32.0",
+    "nodemon": "^3.0.3",
     "prisma": "^5.10.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"

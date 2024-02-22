@@ -14,7 +14,7 @@ class PostUsuarioController {
             await shema.validate({ email, password, nomeCompleto })
 
         } catch (err: any) {
-            return res.status(400).json({message: err.message})
+            return res.status(400).json({message: "Campos incorrectos"})
         }
 
         const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto, next })

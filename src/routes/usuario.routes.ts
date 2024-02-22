@@ -8,7 +8,7 @@ usuarioRouter.post('/create', async (req: Request, res:Response, next: NextFunct
     return await postUsuario.handle(req,res, next)
 })
 
-usuarioRouter.get('/get/:id', async (req: Request, res:Response)=>{
-    return await getUsuario.handle(req,res)
+usuarioRouter.get('/get/:id', async (req: Request, res:Response, next: NextFunction)=>{
+    return await getUsuario.handle(req,res, next)
 })
 export { usuarioRouter }

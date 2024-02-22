@@ -14,7 +14,7 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
         return usuario
     }
     
-    async findById(id: number): Promise<Usuario | Usuario[] |null> {
+    async findById(id: number | null): Promise<Usuario | Usuario[] |null> {
 
         if (!id) {
             return await prisma.usuario.findMany()
