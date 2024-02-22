@@ -16,19 +16,17 @@ class PutModeloCaracteristicaController {
 
         try {
             
-            // await updateModeloCaracteristicaSchema.validate(req.body)
-            console.log('yaya');
-            
-            return
+            await updateModeloCaracteristicaSchema.validate(req.body)
+
             const result = await this.putModeloCaracteristicaUseCase.execute({
-                ...req.body,
                 id: Number(id),
-                next
+                next,
+                ...req.body
             })
+            
             return res.status(201).json(result)
 
         } catch (err: any) {
-            console.log(err);
 
             return res.status(400).json({ message: "Campos incorrectos" })
         }

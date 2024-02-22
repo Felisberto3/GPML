@@ -13,6 +13,8 @@ app.use(router)
 app.use((err: Error, req:Request, res:Response, next:NextFunction )=>{
     
     if (err instanceof ServerError ) {
+        console.log('cpomo assim!');
+        
         return res.status(err.status).json({ message: err.message})
     }
 
