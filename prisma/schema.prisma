@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum tipoUsuario {
+  modelo
+  fotografo
+}
+
+enum tipoGenero {
+  masculino
+  feminino
+}
+
+model Usuario {
+  id                   Int                   @id @default(autoincrement())
+  nomeCompleto         String
+  password             String
+  email                String                @unique
+  dataNascimento       DateTime?
+  genero               tipoGenero?
+  tipo                 tipoUsuario?
+  imagem               String?
+  Agenciados           Agenciados[]
+  Agencia              Agencia[]
+  modeloCaracteristica ModeloCaracteristica?
+  createAt             DateTime              @default(now())
+}
+
+model ModeloCaracteristica {
+  id       Int      @id @default(autoincrement())
+  apelido  String
+  altura   Decimal
+  cintura  Decimal
+  sapato   Int
+  modelo   Usuario? @relation(fields: [modeloId], references: [id])
+  modeloId Int?     @unique
+}
+
+model Agenciados {
+  id         Int      @id @default(autoincrement())
+  usuario    Usuario? @relation(fields: [usuario_id], references: [id])
+  usuario_id Int?
+  agencia    Agencia? @relation(fields: [agencia_id], references: [id])
+  agencia_id Int?
+}
+
+model Agencia {
+  id              Int           @id @default(autoincrement())
+  nome            String
+  slogam          String
+  imagem          String
+  sobre           String
+  usuario         Usuario?      @relation(fields: [administradorId], references: [id])
+  administradorId Int
+  Agenciados      Agenciados[]
+  Notificacao     Notificacao[]
+  createAt        DateTime      @default(now())
+}
+
+model Notificacao {
+  id             Int      @id @default(autoincrement())
+  agencia        Agencia? @relation(fields: [agencia_id], references: [id])
+  agencia_id     Int?
+  descricao      String
+  destinatarioId Int?
+  remitenteId    Int
+  createAt       DateTime @default(now())
+}
