@@ -13,13 +13,12 @@ class PostUsuarioController {
         try {
             await shema.validate({ email, password, nomeCompleto })
 
-        } catch (err) {
-            console.log(err);
-            
-            throw new ServerError('Data types invalid', 400)
+        } catch (err: any) {
+            return res.status(400).json({message: err.message})
         }
 
         const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto })
+
         const payload = payloadGenerator(usuario.id, email)
 
         return res.status(201).json({

@@ -8,7 +8,7 @@ usuarioRouter.post('/create', (req: Request, res:Response)=>{
     return postUsuario.handle(req,res)
 })
 
-usuarioRouter.post('/get', (req: Request, res:Response)=>{
+usuarioRouter.get('/get/:id', (req: Request, res:Response)=>{
     return getUsuario.handle(req,res)
 })
 export { usuarioRouter }

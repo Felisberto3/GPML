@@ -3,6 +3,6 @@ import { usuarioRouter } from "./usuario.routes";
 
 const router = Router()
 
-router.use('/usuarios', usuarioRouter)
+router.use('/usuario', usuarioRouter)
 
 export { router }
