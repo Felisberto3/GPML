@@ -11,17 +11,16 @@ class PostModeloCaracteristicaUseCase {
         ) { }
 
     async execute({ next, ...data }: CreateModeloCaracteristicaDto) {
-        const modeloAlreadyExist = await this.modeloCaracteristicaRepository.findByModeloId(data.modeloId)
-
-        if (modeloAlreadyExist) {
-            next(new ServerError(" Caracteristicas do modelo já existe", 400))
-        }
-
-        // apenas modelos devem ter carac👀
+        
         const modelo = await this.usuarioRepository.findById(data.modeloId) as Usuario
-
+        
         if (modelo) {
             modelo.tipo !== 'modelo'  && next(new ServerError('Apenas modelos podem ter assas caracteristicas', 400))
+        }
+        const modeloAlreadyExist = await this.modeloCaracteristicaRepository.findByModeloId(data.modeloId)
+        
+        if (modeloAlreadyExist) {
+            next(new ServerError(" Caracteristicas do modelo já existe", 400))
         }
 
         try {
