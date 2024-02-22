@@ -2,7 +2,6 @@ import { ServerError } from "../../../../error/index";
 import { modeloCaracteristicaSchema } from "../../../../services/yup";
 import { PostModeloCaracteristicaUseCase } from "./postModeloCaracteristicaUseCase";
 import { NextFunction, Request, Response } from "express";
-import { payloadGenerator } from "../../../../services/payload";
 
 class PostModeloCaracteristicaController {
     constructor(private postModeloCaracteristicaUseCase: PostModeloCaracteristicaUseCase) { }
