@@ -8,16 +8,16 @@ class PostUsuarioController {
     constructor(private postUsuarioUseCase: PostUsuarioUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-        const { email, password, nomeCompleto,tipo } = req.body
+        const { email, password, nomeCompleto,tipo, genero } = req.body
 
         try {
-            await shema.validate({ email, password, nomeCompleto,tipo })
+            await shema.validate({ email, password, nomeCompleto,tipo, genero })
 
         } catch (err: any) {
             return res.status(400).json({message: "Campos incorrectos"})
         }
 
-        const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto,tipo, next })
+        const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto,tipo, genero, next })
 
         if (!usuario) {
            return next(new ServerError('Usuario não existe', 500))

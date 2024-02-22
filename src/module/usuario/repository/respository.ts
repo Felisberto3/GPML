@@ -5,10 +5,10 @@ import { prisma } from "../../../prismaConfig/index";
 class UsuarioRepository implements UsuarioRepositoryTDO {
     constructor() { }
 
-    async create({ email, nomeCompleto, password }: UsuariocreateUsuarioDto): Promise<Usuario> {
+    async create({ email, nomeCompleto, password,tipo, genero }: UsuariocreateUsuarioDto): Promise<Usuario> {
 
         const usuario = await prisma.usuario.create({
-            data: { nomeCompleto, email, password }
+            data: { nomeCompleto, email, password,tipo, genero }
         })
 
         return usuario

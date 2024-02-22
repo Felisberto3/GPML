@@ -29,7 +29,7 @@ model Usuario {
   password             String
   email                String                @unique
   dataNascimento       DateTime?
-  genero               tipoGenero?
+  genero               tipoGenero
   tipo                 tipoUsuario
   imagem               String?
   Agenciados           Agenciados[]
