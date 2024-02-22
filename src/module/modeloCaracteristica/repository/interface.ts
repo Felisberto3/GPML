@@ -20,7 +20,7 @@ interface UpdateModeloCaracteristicaDto {
 }
 interface ModeloCaracteristicaRepositoryTDO {
     create(data: CreateModeloCaracteristicaDto): Promise<ModeloCaracteristica>
-    findById(id: number): Promise<ModeloCaracteristica | ModeloCaracteristica[] | null>
+    findByModeloId(id: number): Promise<ModeloCaracteristica | ModeloCaracteristica[] | null>
     update(data: UpdateModeloCaracteristicaDto): Promise<boolean>
 }
 

@@ -12,12 +12,12 @@ class ModeloCaracteristicaRepository implements ModeloCaracteristicaRepositoryTD
         return ModeloCaracteristica
     }
     
-    async findById(id: number | null): Promise<ModeloCaracteristica | ModeloCaracteristica[] |null> {
+    async findByModeloId(modeloId: number | null): Promise<ModeloCaracteristica | ModeloCaracteristica[] |null> {
 
-        if (!id) {
+        if (!modeloId) {
             return await prisma.modeloCaracteristica.findMany()
         }
-        return await prisma.modeloCaracteristica.findFirst({ where: { id } })
+        return await prisma.modeloCaracteristica.findFirst({ where: { modeloId } })
     }
 
 

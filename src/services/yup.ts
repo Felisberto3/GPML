@@ -16,4 +16,20 @@ const updateUsuarioSchema = yup.object({
     genero: yup.string()
 })
 
-export { shema,updateUsuarioSchema }
+
+const modeloCaracteristicaSchema = yup.object({
+    apelido: yup.string().required(" apelido é campo obrigatório"),
+    altura: yup.number().required(" altura é campo obrigatório"),
+    cintura: yup.number().required(" cintura é campo obrigatório"),
+    sapato: yup.number().required(" sapato é campo obrigatório"),
+    modeloId: yup.number().required(" modeloId é campo obrigatório"),
+})
+const updateModeloCaracteristicaSchema = yup.object({
+    id: yup.number(),
+    apelido: yup.number(),
+    altura: yup.number(),
+    cintura: yup.number(),
+    sapato: yup.number(),
+    modeloId: yup.number(),
+})
+export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema }

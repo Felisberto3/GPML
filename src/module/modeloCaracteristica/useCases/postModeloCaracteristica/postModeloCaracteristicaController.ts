@@ -1,35 +1,33 @@
 import { ServerError } from "../../../../error/index";
-import { shema } from "../../../../services/yup";
-import { PostUsuarioUseCase } from "./postUsuarioUseCase";
+import { modeloCaracteristicaSchema } from "../../../../services/yup";
+import { PostModeloCaracteristicaUseCase } from "./postModeloCaracteristicaUseCase";
 import { NextFunction, Request, Response } from "express";
 import { payloadGenerator } from "../../../../services/payload";
 
-class PostUsuarioController {
-    constructor(private postUsuarioUseCase: PostUsuarioUseCase) { }
+class PostModeloCaracteristicaController {
+    constructor(private postModeloCaracteristicaUseCase: PostModeloCaracteristicaUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-        const { email, password, nomeCompleto,tipo, genero } = req.body
 
         try {
-            await shema.validate({ email, password, nomeCompleto,tipo, genero })
+            await modeloCaracteristicaSchema.validate(req.body)
 
+            const ModeloCaracteristica = await this.postModeloCaracteristicaUseCase.execute({ next, ...req.body })
+
+            if (!ModeloCaracteristica) {
+                return next(new ServerError('ModeloCaracteristica não existe', 500))
+            }
+            return res.status(201).json({
+                ModeloCaracteristica
+            })
         } catch (err: any) {
-            return res.status(400).json({message: "Campos incorrectos"})
+            
+            return res.status(400).json({ message: err.message })
         }
 
-        const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto,tipo, genero, next })
 
-        if (!usuario) {
-           return next(new ServerError('Usuario não existe', 500))
-        }
 
-        const payload = payloadGenerator(usuario.id, email)
-
-        return res.status(201).json({
-            usuario,
-            payload
-        })
     }
 }
 
-export { PostUsuarioController }
+export { PostModeloCaracteristicaController }
