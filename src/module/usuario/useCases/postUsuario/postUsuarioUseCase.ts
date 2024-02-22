@@ -8,15 +8,18 @@ class PostUsuarioUseCase {
     constructor(private usuarioRepository: UsuarioRepository) { }
 
     async execute({ email, nomeCompleto, password }: UsuariocreateUsuarioDto) {
-        const usuario = await this.usuarioRepository.findByEmail(email)
-
-        if (usuario) {
+        
+        try {
+            const usuario = await this.usuarioRepository.findByEmail(email)
+            password = await hash(password, 8)
+    
+            return  await this.usuarioRepository.create({ email, nomeCompleto, password })
+            
+        } catch (error) {
+            
             throw new ServerError('Usuario already exist', 400)
         }
 
-        password = await hash(password, 8)
-
-        return  await this.usuarioRepository.create({ email, nomeCompleto, password })
 
   
     }
