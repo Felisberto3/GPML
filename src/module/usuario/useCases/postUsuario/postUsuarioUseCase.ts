@@ -1,8 +1,8 @@
 import { hash } from "bcrypt"
 import { ServerError } from "../../../../error/index"
 
-import { UsuariocreateUsuarioDto } from "module/usuario/repository/interface"
-import { UsuarioRepository } from "module/usuario/repository/respository"
+import { UsuariocreateUsuarioDto } from "../../repository/interface"
+import { UsuarioRepository } from "../../repository/respository"
 
 class PostUsuarioUseCase {
     constructor(private usuarioRepository: UsuarioRepository) { }
