@@ -10,12 +10,11 @@ class PutModeloCaracteristicaUseCase {
         
         let modelo = await this.modeloCaracteristicaRepository.findByModeloId(id) as ModeloCaracteristica
         
-        if (!modelo) {
+        if (!modelo.id) {
            return next(new ServerError('Não exite usuario com este id', 450))
         }   
-        console.log('passou');
+        
         id = modelo.id
-        //como funciona com id nao existente👀✔👀
         return await this.modeloCaracteristicaRepository.update({ id, next, ...data})
 
     }
