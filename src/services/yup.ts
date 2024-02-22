@@ -8,4 +8,12 @@ const shema = yup.object({
     genero: yup.string().required()
 })
 
-export { shema }
+const updateUsuarioSchema = yup.object({
+    nomeCompleto: yup.string(),
+    email: yup.string().email(),
+    password: yup.string(),
+    tipo: yup.string(),
+    genero: yup.string().required()
+})
+
+export { shema,updateUsuarioSchema }

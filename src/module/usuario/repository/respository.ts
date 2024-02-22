@@ -1,5 +1,5 @@
 import { $Enums, Usuario } from "@prisma/client";
-import { UsuarioRepositoryTDO, UsuariocreateUsuarioDto } from "./interface";
+import { UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto, UsuariocreateUsuarioDto } from "./interface";
 import { prisma } from "../../../prismaConfig/index";
 
 class UsuarioRepository implements UsuarioRepositoryTDO {
@@ -24,6 +24,14 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
 
      async findByEmail(email: string): Promise<Usuario | null> {
         return await prisma.usuario.findUnique({ where: { email }})
+    }
+
+    async update({ id, next, ...data}: UsuarioUpdateUsuarioDto): Promise<boolean> {
+        await prisma.usuario.update({
+            where: { id },
+            data
+        })
+        return true
     }
 }
 
