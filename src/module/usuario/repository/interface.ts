@@ -6,7 +6,7 @@ interface UsuariocreateUsuarioDto {
     password: string
     email: string
     tipo: 'modelo' | 'fotografo'
-    genero: 'masculino' | 'feminino'
+    genero: 'masculino' | 'feminino' 
     next: NextFunction
 }
 interface UsuarioRepositoryTDO {
