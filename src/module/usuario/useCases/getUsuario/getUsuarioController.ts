@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { payloadGenerator } from "../../../../services/payload";
 import { GetUsuarioUseCase } from "./getUsuarioUseCase";
 
-class getUsuarioController {
+class GetUsuarioController {
     constructor(private getUsuarioUseCase: GetUsuarioUseCase) { }
 
     async handle(req: Request, res: Response) {
@@ -18,4 +18,4 @@ class getUsuarioController {
     }
 }
 
-export { getUsuarioController }
+export { GetUsuarioController }
