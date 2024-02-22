@@ -1,9 +1,11 @@
 import { Usuario } from "@prisma/client";
+import { NextFunction } from "express";
 
 interface UsuariocreateUsuarioDto {
     nomeCompleto: string
     password: string
     email: string
+    next: NextFunction
 }
 interface UsuarioRepositoryTDO {
     create( { email,nomeCompleto,password } : UsuariocreateUsuarioDto) : Promise<Usuario>
