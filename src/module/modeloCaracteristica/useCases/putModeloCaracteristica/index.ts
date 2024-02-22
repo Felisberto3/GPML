@@ -1,9 +1,9 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { PutUsuarioController } from "./putUsuarioController"
-import { PutUsuarioUseCase } from "./putUsuarioUseCase"
+import { ModeloCaracteristicaRepository } from "../../repository/respository"
+import { PutModeloCaracteristicaController } from "./putModeloCaracteristicaController"
+import { PutModeloCaracteristicaUseCase } from "./putModeloCaracteristicaUseCase"
 
-const usuarioRepository = new UsuarioRepository()
-const putUsuarioUseCase = new PutUsuarioUseCase(usuarioRepository)
-const putUsuario = new PutUsuarioController(putUsuarioUseCase)
+const modeloCaracteristicaRepository = new ModeloCaracteristicaRepository()
+const putModeloCaracteristicaUseCase = new PutModeloCaracteristicaUseCase(modeloCaracteristicaRepository)
+const putModeloCaracteristica = new PutModeloCaracteristicaController(putModeloCaracteristicaUseCase)
 
-export { putUsuario }
+export { putModeloCaracteristica }

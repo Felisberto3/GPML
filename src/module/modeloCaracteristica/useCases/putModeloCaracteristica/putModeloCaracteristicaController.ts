@@ -1,24 +1,26 @@
 import { ServerError } from "../../../../error/index";
-import { shema, updateUsuarioSchema } from "../../../../services/yup";
+import {  updateModeloCaracteristicaSchema } from "../../../../services/yup";
 import { NextFunction, Request, Response } from "express";
-import { PutUsuarioUseCase } from "./putUsuarioUseCase";
+import { PutModeloCaracteristicaUseCase } from "./putModeloCaracteristicaUseCase";
 
-class PutUsuarioController {
-    constructor(private putUsuarioUseCase: PutUsuarioUseCase) { }
+class PutModeloCaracteristicaController {
+    constructor(private putModeloCaracteristicaUseCase: PutModeloCaracteristicaUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params
 
         if (!Number(id)) {
-            return next(new ServerError('usuario id é obrigatório', 400))
+            return next(new ServerError('ModeloCaracteristica id é obrigatório', 400))
         }
 
 
         try {
             
-            await updateUsuarioSchema.validate(req.body)
-
-            const result = await this.putUsuarioUseCase.execute({
+            // await updateModeloCaracteristicaSchema.validate(req.body)
+            console.log('yaya');
+            
+            return
+            const result = await this.putModeloCaracteristicaUseCase.execute({
                 ...req.body,
                 id: Number(id),
                 next
@@ -38,4 +40,4 @@ class PutUsuarioController {
     }
 }
 
-export { PutUsuarioController }
+export { PutModeloCaracteristicaController }

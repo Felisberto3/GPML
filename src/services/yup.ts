@@ -25,11 +25,10 @@ const modeloCaracteristicaSchema = yup.object({
     modeloId: yup.number().required(" modeloId é campo obrigatório"),
 })
 const updateModeloCaracteristicaSchema = yup.object({
-    id: yup.number(),
     apelido: yup.number(),
     altura: yup.number(),
     cintura: yup.number(),
     sapato: yup.number(),
-    modeloId: yup.number(),
+    modeloId: yup.number()
 })
 export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema }
