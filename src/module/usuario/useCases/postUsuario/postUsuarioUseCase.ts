@@ -7,7 +7,7 @@ import { UsuarioRepository } from "../../repository/respository";
 class PostUsuarioUseCase {
     constructor(private usuarioRepository: UsuarioRepository) { }
 
-    async execute({ email, nomeCompleto, password, next }: UsuariocreateUsuarioDto) {
+    async execute({ email, nomeCompleto, password,tipo, next }: UsuariocreateUsuarioDto) {
         try {
             // Verifica se o usuário já existe
             const existingUser = await this.usuarioRepository.findByEmail(email);
@@ -20,7 +20,7 @@ class PostUsuarioUseCase {
             const hashedPassword = await hash(password, 8);
 
             // Cria um novo usuário
-            const newUser = await this.usuarioRepository.create({ email, nomeCompleto, password: hashedPassword, next });
+            const newUser = await this.usuarioRepository.create({ email, nomeCompleto,tipo, password: hashedPassword, next });
             return newUser;
         } catch (error) {
             // Lança um erro se ocorrer algum problema
