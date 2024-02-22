@@ -1,34 +1,30 @@
-import { $Enums, Usuario } from "@prisma/client";
-import { UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto, UsuariocreateUsuarioDto } from "./interface";
+import {  ModeloCaracteristica } from "@prisma/client";
+import { CreateModeloCaracteristicaDto, ModeloCaracteristicaRepositoryTDO, UpdateModeloCaracteristicaDto } from "./interface";
 import { prisma } from "../../../prismaConfig/index";
 
-class UsuarioRepository implements UsuarioRepositoryTDO {
+class ModeloCaracteristicaRepository implements ModeloCaracteristicaRepositoryTDO {
     constructor() { }
 
-    async create({ email, nomeCompleto, password,tipo, genero, next }: UsuariocreateUsuarioDto): Promise<Usuario> {
+    async create({ next,...data }: CreateModeloCaracteristicaDto): Promise<ModeloCaracteristica> {
 
-        const usuario = await prisma.usuario.create({
-            data: { nomeCompleto, email, password,tipo, genero }
-        })
+        const ModeloCaracteristica = await prisma.modeloCaracteristica.create({ data })
 
-        return usuario
+        return ModeloCaracteristica
     }
     
-    async findById(id: number | null): Promise<Usuario | Usuario[] |null> {
+    async findById(id: number | null): Promise<ModeloCaracteristica | ModeloCaracteristica[] |null> {
 
         if (!id) {
-            return await prisma.usuario.findMany()
+            return await prisma.modeloCaracteristica.findMany()
         }
-        return await prisma.usuario.findFirst({ where: { id } })
+        return await prisma.modeloCaracteristica.findFirst({ where: { id } })
     }
 
-     async findByEmail(email: string): Promise<Usuario | null> {
-        return await prisma.usuario.findUnique({ where: { email }})
-    }
 
-    async update({ id,next, ...data}: UsuarioUpdateUsuarioDto): Promise<boolean> {
+
+    async update({ id,next, ...data}: UpdateModeloCaracteristicaDto ): Promise<boolean> {
         
-        await prisma.usuario.update({
+        await prisma.modeloCaracteristica.update({
             where: { id },
             data:  data 
         })
@@ -36,4 +32,4 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
     }
 }
 
-export { UsuarioRepository }
+export { ModeloCaracteristicaRepository }
