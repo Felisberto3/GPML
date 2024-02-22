@@ -18,7 +18,7 @@ class PostModeloCaracteristicaUseCase {
             
         } catch (error: any) {
             // Lança um erro se ocorrer algum problema
-            next(new ServerError("falha ao criar o ModeloCaracteristica", 500))
+            next(new ServerError("falha ao criar o ModeloCaracteristica, talves id do modelo não existe", 500))
             return
         }
     }
