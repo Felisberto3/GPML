@@ -1,7 +1,5 @@
 import { ServerError } from "../../../../error/index";
-import { shema } from "../../../../services/yup";
 import { Request, Response } from "express";
-import { payloadGenerator } from "../../../../services/payload";
 import { GetUsuarioUseCase } from "./getUsuarioUseCase";
 
 class GetUsuarioController {
