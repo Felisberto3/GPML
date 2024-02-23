@@ -8,8 +8,10 @@ class AuthUsuarioController {
     async handle(req: Request, res: Response, next: NextFunction) {
 
         try {
+            console.log('yayayayayya');
             
             await authSchema.validate(req.body)
+            console.log('yayayayayya');
 
             const result = await this.authUsuarioUseCase.execute({
                 ...req.body,

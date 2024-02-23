@@ -1,4 +1,4 @@
-import { hash, compare } from "bcrypt";
+import { compare } from "bcrypt";
 import { ServerError } from "../../../../error/index";
 import { UsuarioUpdateUsuarioDto } from "../../repository/interface";
 import { UsuarioRepository } from "../../repository/respository";

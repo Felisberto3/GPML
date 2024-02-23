@@ -33,7 +33,7 @@ const updateModeloCaracteristicaSchema = yup.object({
 })
 
 const authSchema = yup.object({
-    email:yup.string().email().required(),
-    password:yup.string().required(),
+    email:yup.string().email().required("email é campo obrigatório!"),
+    password:yup.string().required("password é campo obrigatório!"),
 })
 export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema,authSchema }
