@@ -60,7 +60,7 @@ const notificacaoShema = yup.object({
 })
 
 const agenciadosShema = yup.object({
-    agencia_id: yup.number().required("agencia_id is campo obrigatório"),
+    agencia_id: yup.number().integer("agencia_id deve ser inteiro").required("agencia_id is campo obrigatório"),
     usuario_id: yup.number().required("usuario_id is campo obrigatório"),
 
 })

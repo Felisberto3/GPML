@@ -11,7 +11,7 @@ class PostAgenciadosUseCase {
          return await  this.agenciadosRepository.create({agencia_id, usuario_id})
  
         } catch (error:any) {
-           throw new ServerError("falha ao criar o Agenciados", 500)
+           throw new ServerError(error.message, 500)
         }
     }
 }
