@@ -1,17 +1,16 @@
-import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
 
 import { NotificacaoRepository } from "../../repository/respository";
 import { createNotificacaoDto } from "module/notificacao/repository/interface";
 
 class PostNotificacaoUseCase {
-    constructor(private NotificacaoRepository: NotificacaoRepository) { }
+    constructor(private notificacaoRepository: NotificacaoRepository) { }
 
-    async execute({ next, ...data}: createNotificacaoDto) {
+    async execute(data: createNotificacaoDto) {
         try {
-
+            return await this.notificacaoRepository.create(data)
         } catch (error:any) {
-         
+            throw new ServerError(error.message, 400)
         }
     }
 }
