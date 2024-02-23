@@ -20,9 +20,6 @@ class DeleteAgenciaUseCase {
         if (!result) {
             throw new ServerError('Apenas o proprietario pode mudar esta agencia', 400)
         }
-        // if (antigaAgencia?.administradorId !== id) {👀👀👀👀
-        // }
-
 
         try {
             return await this.agenciaRepository.delete(id)
