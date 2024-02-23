@@ -1,9 +1,9 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { PostUsuarioController } from "./postUsuarioController"
-import { PostUsuarioUseCase } from "./postUsuarioUseCase"
+import { NotificacaoRepository } from "../../repository/respository"
+import { PostNotificacaoController } from "./postNotificacaoController"
+import { PostNotificacaoUseCase } from "./postNotificacaoUseCase"
 
-const usuarioRepository = new UsuarioRepository()
-const postUsuarioUseCase = new PostUsuarioUseCase(usuarioRepository)
-const postUsuario = new PostUsuarioController(postUsuarioUseCase)
+const notificacaoRepository = new NotificacaoRepository()
+const postNotificacaoUseCase = new PostNotificacaoUseCase(notificacaoRepository)
+const postNotificacao = new PostNotificacaoController(postNotificacaoUseCase)
 
-export { postUsuario }
+export { postNotificacao }
