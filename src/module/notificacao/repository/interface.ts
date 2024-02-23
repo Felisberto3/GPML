@@ -12,8 +12,8 @@ interface createNotificacaoDto {
 interface NotificacaoRepositoryTDO {
     create(data: createNotificacaoDto): Promise<Notificacao>
     findById(id: number): Promise<Notificacao | Notificacao[] | null>
-    findByAgenciaId(id: number): Promise<Notificacao[] | null>
-    findBydestinatarioId(id: number): Promise<Notificacao | Notificacao[] | null>
+    findByAgenciaId(AgenciaId: number): Promise<Notificacao[] | null>
+    findBydestinatarioId(destinatarioId: number, AgenciaId: number): Promise<Notificacao | Notificacao[] | null>
 }
 
 export { createNotificacaoDto, NotificacaoRepositoryTDO }
