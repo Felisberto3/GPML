@@ -1,17 +1,21 @@
-import { ServerError } from "../../../../error/index";
 import { NextFunction, Request, Response } from "express";
-import { GetUsuarioUseCase } from "./getUsuarioUseCase";
+import { GetNotificacaoUseCase } from "./getNotificacaoUseCase";
 
-class GetUsuarioController {
-    constructor(private getUsuarioUseCase: GetUsuarioUseCase) { }
+class GetNotificacaoController {
+    constructor(private getNotificacaoUseCase: GetNotificacaoUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params
 
-        const usuario = await this.getUsuarioUseCase.execute(Number(id))
 
-        return res.status(200).json(usuario )
+        try {
+            const notificacao = await this.getNotificacaoUseCase.execute(Number(id))
+
+            return res.status(200).json(notificacao)
+        } catch (error: any ) {
+            return res.status(error.status).json(error.message)
+        }
     }
 }
 
-export { GetUsuarioController }
+export { GetNotificacaoController }

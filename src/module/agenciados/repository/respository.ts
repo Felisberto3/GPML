@@ -1,39 +1,36 @@
-import { $Enums, Usuario } from "@prisma/client";
-import { UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto, UsuariocreateUsuarioDto } from "./interface";
+import { $Enums, Agenciados } from "@prisma/client";
 import { prisma } from "../../../prismaConfig/index";
+import { AgenciadosRepositoryTDO, createAgenciadosDto, updateAgenciadosDto } from "./interface";
 
-class UsuarioRepository implements UsuarioRepositoryTDO {
+class AgenciadosRepository implements AgenciadosRepositoryTDO {
     constructor() { }
 
-    async create({ email, nomeCompleto, password,tipo, genero, next }: UsuariocreateUsuarioDto): Promise<Usuario> {
+    async create({ next, ...data}: createAgenciadosDto): Promise<Agenciados> {
 
-        const usuario = await prisma.usuario.create({
-            data: { nomeCompleto, email, password,tipo, genero }
-        })
+        return await prisma.agenciados.create({ data })
 
-        return usuario
     }
-    
-    async findById(id: number | null): Promise<Usuario | Usuario[] |null> {
+
+    async findById(id: number | null): Promise<Agenciados | Agenciados[] | null> {
 
         if (!id) {
-            return await prisma.usuario.findMany()
+            return await prisma.agenciados.findMany()
         }
-        return await prisma.usuario.findFirst({ where: { id } })
+        return await prisma.agenciados.findFirst({ where: { id } })
     }
 
-     async findByEmail(email: string): Promise<Usuario | null> {
-        return await prisma.usuario.findUnique({ where: { email }})
-    }
 
-    async update({ id,next, ...data}: UsuarioUpdateUsuarioDto): Promise<boolean> {
-        
-        await prisma.usuario.update({
+    async findByagenciaId(agencia_id: number): Promise<Agenciados[] | null> {
+        return await prisma.agenciados.findMany({ where: { agencia_id }})
+    }
+    async update({ id, next, ...data }: updateAgenciadosDto): Promise<boolean> {
+
+        await prisma.agenciados.update({
             where: { id },
-            data:  data 
+            data: data
         })
         return true
     }
 }
 
-export { UsuarioRepository }
+export { AgenciadosRepository }

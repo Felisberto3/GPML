@@ -1,13 +1,18 @@
 
-import { UsuarioRepository } from "../../repository/respository"
+import { ServerError } from "../../../../error/index"
+import { NotificacaoRepository } from "../../repository/respository"
 
-class GetUsuarioUseCase {
-    constructor(private usuarioRepository: UsuarioRepository) { }
+class GetNotificacaoUseCase {
+    constructor(private notificacaoRepository: NotificacaoRepository) { }
 
-    async execute(id: number | null) {
+    async execute(id: number) {
 
-        return  await this.usuarioRepository.findById(id)
+        try {
+            return  await this.notificacaoRepository.findById(id)
+        } catch (error: any) {
+            throw new ServerError(error.message, 400)
+        }
     }
 }
 
-export { GetUsuarioUseCase }
+export { GetNotificacaoUseCase }

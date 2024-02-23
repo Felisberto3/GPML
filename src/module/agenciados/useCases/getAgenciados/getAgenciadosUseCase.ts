@@ -1,13 +1,13 @@
 
-import { UsuarioRepository } from "../../repository/respository"
+import { AgenciadosRepository } from "../../repository/respository"
 
-class GetUsuarioUseCase {
-    constructor(private usuarioRepository: UsuarioRepository) { }
+class GetAgenciadosUseCase {
+    constructor(private AgenciadosRepository: AgenciadosRepository) { }
 
     async execute(id: number | null) {
 
-        return  await this.usuarioRepository.findById(id)
+        return  await this.AgenciadosRepository.findById(id)
     }
 }
 
-export { GetUsuarioUseCase }
+export { GetAgenciadosUseCase }

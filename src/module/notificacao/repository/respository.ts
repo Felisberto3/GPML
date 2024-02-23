@@ -18,7 +18,7 @@ class NotificacaoRepository implements NotificacaoRepositoryTDO {
             where: { id }
         })
     }
-
+   
 
     async findByAgenciaId(id: number): Promise<Notificacao[] | null> {
         return await prisma.notificacao.findMany({ where: { id } })
@@ -27,7 +27,7 @@ class NotificacaoRepository implements NotificacaoRepositoryTDO {
     async findBydestinatarioId(destinatarioId: number, AgenciaId: number): Promise<Notificacao | Notificacao[] | null> {
         if (AgenciaId) {
             return await prisma.notificacao.findMany({
-                where: { destinatarioId, AND:{ agencia_id: AgenciaId }  }
+                where: { destinatarioId, AND:{ agencia_id: AgenciaId } },
             })
         }
         return await prisma.notificacao.findMany({ where: { destinatarioId } })

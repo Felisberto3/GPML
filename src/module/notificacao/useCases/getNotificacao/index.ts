@@ -1,9 +1,9 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { GetUsuarioController } from "./getUsuarioController"
-import { GetUsuarioUseCase } from "./getUsuarioUseCase"
+import { NotificacaoRepository } from "../../repository/respository"
+import { GetNotificacaoController } from "./getNotificacaoController"
+import { GetNotificacaoUseCase } from "./getNotificacaoUseCase"
 
-const usuarioRepository = new UsuarioRepository()
-const getUsuarioUseCase = new GetUsuarioUseCase(usuarioRepository)
-const getUsuario = new GetUsuarioController(getUsuarioUseCase)
+const notificacaoRepository = new NotificacaoRepository()
+const getNotificacaoUseCase = new GetNotificacaoUseCase(notificacaoRepository)
+const getNotificacao = new GetNotificacaoController(getNotificacaoUseCase)
 
-export { getUsuario }
+export { getNotificacao }

@@ -1,17 +1,17 @@
 import { ServerError } from "../../../../error/index";
 import { NextFunction, Request, Response } from "express";
-import { GetUsuarioUseCase } from "./getUsuarioUseCase";
+import { GetAgenciadosUseCase } from "./getAgenciadosUseCase";
 
-class GetUsuarioController {
-    constructor(private getUsuarioUseCase: GetUsuarioUseCase) { }
+class GetAgenciadosController {
+    constructor(private getAgenciadosUseCase: GetAgenciadosUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params
 
-        const usuario = await this.getUsuarioUseCase.execute(Number(id))
+        const agenciados = await this.getAgenciadosUseCase.execute(Number(id))
 
-        return res.status(200).json(usuario )
+        return res.status(200).json(agenciados )
     }
 }
 
-export { GetUsuarioController }
+export { GetAgenciadosController }
