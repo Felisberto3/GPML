@@ -45,11 +45,22 @@ const agenciaShema = yup.object({
     sobre: yup.string().required("sobre is campo obrigatório"),
     administradorId: yup.string().required("administradorId is campo obrigatório")
 })
+const updateAgenciaSchema = yup.object({
+    nome: yup.string(),
+    slogam: yup.string(),
+    imagem: yup.string(),
+    sobre: yup.string(),
+    administradorId: yup.string(),
+})
+
+
+
 export {
     shema,
     updateUsuarioSchema,
     updateModeloCaracteristicaSchema,
     modeloCaracteristicaSchema,
     authSchema,
-    agenciaShema
+    agenciaShema,
+    updateAgenciaSchema
 }

@@ -1,34 +1,33 @@
 import { ServerError } from "../../../../error/index";
-import { shema, updateUsuarioSchema } from "../../../../services/yup";
 import { NextFunction, Request, Response } from "express";
-import { PutUsuarioUseCase } from "./putUsuarioUseCase";
+import { PutAgenciaUseCase } from "./putAgenciaUseCase";
+import { updateAgenciaSchema } from "services/yup";
 
-class PutUsuarioController {
-    constructor(private putUsuarioUseCase: PutUsuarioUseCase) { }
+class PutAgenciaController {
+    constructor(private putAgenciaUseCase: PutAgenciaUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params
 
         if (!Number(id)) {
-            return next(new ServerError('usuario id é obrigatório', 400))
+            return next(new ServerError('Agencia id é obrigatório', 400))
         }
 
 
         try {
             
-            await updateUsuarioSchema.validate(req.body)
+            await updateAgenciaSchema.validate(req.body)
 
-            const result = await this.putUsuarioUseCase.execute({
+            const result = await this.putAgenciaUseCase.execute({
                 ...req.body,
                 id: Number(id),
-                next
             })
             return res.status(201).json(result)
 
         } catch (err: any) {
             console.log(err);
 
-            return res.status(400).json({ message: "Campos incorrectos" })
+            return res.status(400).json({ message: err.message })
         }
 
 
@@ -38,4 +37,4 @@ class PutUsuarioController {
     }
 }
 
-export { PutUsuarioController }
+export { PutAgenciaController }

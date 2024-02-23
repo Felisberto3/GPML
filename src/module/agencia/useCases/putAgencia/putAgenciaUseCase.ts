@@ -1,23 +1,23 @@
 import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
-import { UsuarioUpdateUsuarioDto } from "../../repository/interface";
-import { UsuarioRepository } from "../../repository/respository";
+import { AgenciaRepository } from "../../repository/respository";
+import { AgenciaUpdateDto } from "module/agencia/repository/interface";
 
-class PutUsuarioUseCase {
-    constructor(private usuarioRepository: UsuarioRepository) { }
+class PutAgenciaUseCase {
+    constructor(private agenciaRepository: AgenciaRepository) { }
 
-    async execute({ id, next, ...data }: UsuarioUpdateUsuarioDto) {
+    async execute({ id, administradorId, ...data }: AgenciaUpdateDto) {
         
-        const { password} = data
-        
-        
-        if (password) {
-            data.password = await hash( password! , 8);
+        const antigaAgencia = await this.agenciaRepository.finByAdminId(administradorId!)
+
+        if (antigaAgencia?.id !== id) {
+            throw new Error('Apenas o proprietario pode mudar esta agencia')
         }
+        
 
-        return await this.usuarioRepository.update({ id, next, ...data})
+        return await this.agenciaRepository.update({ id , ...data})
 
     }
 }
 
-export { PutUsuarioUseCase };
+export { PutAgenciaUseCase };

@@ -5,15 +5,9 @@ import { AgenciaRepositoryTDO, AgenciaUpdateDto, AgenciacreateDto } from "./inte
 class AgenciaRepository implements AgenciaRepositoryTDO {
     constructor() { }
 
-    async create({ ...data }: AgenciacreateDto): Promise<Agencia> {
+    async create(data: AgenciacreateDto): Promise<Agencia> {
         
-        return await prisma.agencia.create({ data:{
-            nome: "string",
-            slogam: "string",
-            imagem: "string",
-            sobre: "string",
-            administradorId: 2,
-        } })
+        return await prisma.agencia.create({ data })
         
     }
     
@@ -29,7 +23,11 @@ class AgenciaRepository implements AgenciaRepositoryTDO {
         return await prisma.agencia.findUnique({ where: { nome }})
     }
 
-    async update({ id,next, ...data}: AgenciaUpdateDto): Promise<boolean> {
+    async finByAdminId(administradorId: number): Promise<Agencia | null>{
+        return await prisma.agencia.findFirst({ where: { administradorId } })
+    }
+
+    async update({ id, ...data}: AgenciaUpdateDto): Promise<boolean> {
         
         await prisma.agencia.update({
             where: { id },

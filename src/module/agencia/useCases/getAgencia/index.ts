@@ -1,9 +1,9 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { GetUsuarioController } from "./getUsuarioController"
-import { GetUsuarioUseCase } from "./getUsuarioUseCase"
+import { AgenciaRepository } from "../../repository/respository"
+import { GetAgenciaController } from "./getAgenciaController"
+import { GetAgenciaUseCase } from "./getAgenciaUseCase"
 
-const usuarioRepository = new UsuarioRepository()
-const getUsuarioUseCase = new GetUsuarioUseCase(usuarioRepository)
-const getUsuario = new GetUsuarioController(getUsuarioUseCase)
+const agenciaRepository = new AgenciaRepository()
+const getAgenciaUseCase = new GetAgenciaUseCase(agenciaRepository)
+const getAgencia = new GetAgenciaController(getAgenciaUseCase)
 
-export { getUsuario }
+export { getAgencia }

@@ -11,12 +11,12 @@ class PostAgenciaController {
             
             await agenciaShema.validate(req.body)
 
-            const agencia = await this.postAgenciaUseCase.execute({next, ...req.body})
+            const agencia = await this.postAgenciaUseCase.execute({ ...req.body})
 
             return res.status(201).json( agencia )
 
         } catch (err: any) {
-            return res.status(400).json({message: err.message})
+            return res.status(err.status).json({message: err.message})
         }
     }
 }

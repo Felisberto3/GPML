@@ -6,23 +6,17 @@ import { AgenciacreateDto } from "module/agencia/repository/interface";
 class PostAgenciaUseCase {
     constructor(private agenciaRepository: AgenciaRepository) { }
 
-    async execute({ next, nome, ...data }: AgenciacreateDto) {
+    async execute({ nome, ...data }: AgenciacreateDto) {
         const agenciaExist = await this.agenciaRepository.findByName(nome);
 
         if (agenciaExist) {
-            // return next(new ServerError("Nome desta agencia já existe ", 401))
+            throw new ServerError("Nome desta agencia já existe ", 450)
         }
 
         try {
-            const ya = await this.agenciaRepository.create({ nome, ...data });
-            console.log('como jnedkjnekjwn');
-            
-            return ya
-            
-
-        } catch (error: any) {
-            return next!(new ServerError( "onde estas"+ error.message , 400))
-            
+            return await this.agenciaRepository.create({ nome, ...data });
+        } catch (error) {
+            throw new ServerError('Erro ao criar agencia', 4001)
         }
     }
 }
