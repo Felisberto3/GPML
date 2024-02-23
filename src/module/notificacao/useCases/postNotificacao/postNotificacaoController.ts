@@ -7,11 +7,13 @@ class PostNotificacaoController {
     constructor(private postNotificacaoUseCase: PostNotificacaoUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-
+            const { userId: remitenteId } = req.body
         try {
             await notificacaoShema.validate(req.body)
 
-            const notificacao = await this.postNotificacaoUseCase.execute({ ...req.body })
+            const data = { remitenteId, ...req.body }
+            
+            const notificacao = await this.postNotificacaoUseCase.execute(data)
 
             return res.status(201).json(notificacao)
         } catch (err: any) {

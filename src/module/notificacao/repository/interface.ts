@@ -6,6 +6,7 @@ interface createNotificacaoDto {
     descricao: string;
     destinatarioId: number | null;
     remitenteId: number;
+    userId?: number;
     next?: NextFunction
 }
 
