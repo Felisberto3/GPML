@@ -35,6 +35,14 @@ class AgenciaRepository implements AgenciaRepositoryTDO {
         })
         return true
     }
+
+    async delete(id: number): Promise<boolean | null> {
+         await prisma.agencia.delete({
+            where: { id }
+        })
+
+        return true
+    }
 }
 
 export { AgenciaRepository }

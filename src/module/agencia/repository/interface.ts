@@ -24,6 +24,7 @@ interface AgenciaRepositoryTDO {
     findById(id: number): Promise<Agencia | Agencia[] | null>
     findByName(email: string): Promise<Agencia | null>
     update(data: AgenciaUpdateDto): Promise<boolean>
+    delete(id: number): Promise<boolean | null>
 }
 
 export { AgenciacreateDto, AgenciaRepositoryTDO, AgenciaUpdateDto }
