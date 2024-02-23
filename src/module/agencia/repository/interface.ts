@@ -21,7 +21,7 @@ interface AgenciaUpdateDto {
 interface AgenciaRepositoryTDO {
     create(data: AgenciacreateDto): Promise<Agencia>
     findById(id: number): Promise<Agencia | Agencia[] | null>
-    findByEmail(email: string): Promise<Agencia | null>
+    findByName(email: string): Promise<Agencia | null>
     update(data: AgenciaUpdateDto): Promise<boolean>
 }
 

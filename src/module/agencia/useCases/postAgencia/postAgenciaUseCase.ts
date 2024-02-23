@@ -1,33 +1,28 @@
 import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
 
-import { UsuariocreateUsuarioDto } from "../../repository/interface";
-import { UsuarioRepository } from "../../repository/respository";
+import { AgenciaRepository } from "../../repository/respository";
+import { AgenciacreateDto } from "module/agencia/repository/interface";
 
-class PostUsuarioUseCase {
-    constructor(private usuarioRepository: UsuarioRepository) { }
+class PostAgenciaUseCase {
+    constructor(private agenciaRepository: AgenciaRepository) { }
 
-    async execute({ email, nomeCompleto, password,tipo, genero, next }: UsuariocreateUsuarioDto) {
+    async execute({ next, nome, ...data }: AgenciacreateDto) {
         try {
-            // Verifica se o usuário já existe
-            const existingUser = await this.usuarioRepository.findByEmail(email);
-            if (existingUser) {
-                next(new ServerError('Usuario already exists', 400))
+
+            const agenciaExist = await this.agenciaRepository.findByName(nome);
+
+            if (agenciaExist) {
+                next(new ServerError("Nome desta agencia já existe ", 401))
                 return
             }
+            return await this.agenciaRepository.create({ next, nome, ...data });
 
-            // Hash da senha
-            const hashedPassword = await hash(password, 8);
-
-            // Cria um novo usuário
-            const newUser = await this.usuarioRepository.create({ email, nomeCompleto,tipo, password: hashedPassword, genero, next });
-            return newUser;
-        } catch (error:any) {
-            // Lança um erro se ocorrer algum problema
-            next(new ServerError("falha ao criar o usuario", 500))
+        } catch (error: any) {
+            next(new ServerError("falha ao criar o Agencia", 400))
             return
         }
     }
 }
 
-export { PostUsuarioUseCase };
+export { PostAgenciaUseCase };

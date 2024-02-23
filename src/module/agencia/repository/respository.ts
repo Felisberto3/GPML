@@ -20,7 +20,7 @@ class AgenciaRepository implements AgenciaRepositoryTDO {
         return await prisma.agencia.findFirst({ where: { id } })
     }
 
-     async findByEmail(nome: string): Promise<Agencia | null> {
+     async findByName(nome: string): Promise<Agencia | null> {
         return await prisma.agencia.findUnique({ where: { nome }})
     }
 

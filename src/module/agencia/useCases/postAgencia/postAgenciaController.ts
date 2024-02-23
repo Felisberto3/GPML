@@ -1,35 +1,24 @@
 import { ServerError } from "../../../../error/index";
-import { shema } from "../../../../services/yup";
-import { PostUsuarioUseCase } from "./postUsuarioUseCase";
+import { agenciaShema } from "../../../../services/yup";
 import { NextFunction, Request, Response } from "express";
 import { payloadGenerator } from "../../../../services/payload";
+import { PostAgenciaUseCase } from "./postAgenciaUseCase";
 
-class PostUsuarioController {
-    constructor(private postUsuarioUseCase: PostUsuarioUseCase) { }
+class PostAgenciaController {
+    constructor(private postAgenciaUseCase: PostAgenciaUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-        const { email, password, nomeCompleto,tipo, genero } = req.body
 
         try {
-            await shema.validate({ email, password, nomeCompleto,tipo, genero })
+            await agenciaShema.validate(req.body)
+            const Agencia = await this.postAgenciaUseCase.execute({next, ...req.body})
 
+            return res.status(201).json({ Agencia })
+            
         } catch (err: any) {
             return res.status(400).json({message: "Campos incorrectos"})
         }
-
-        const usuario = await this.postUsuarioUseCase.execute({ email, password, nomeCompleto,tipo, genero, next })
-
-        if (!usuario) {
-           return next(new ServerError('Usuario não existe', 500))
-        }
-
-        const payload = payloadGenerator(usuario.id, email)
-
-        return res.status(201).json({
-            usuario,
-            payload
-        })
     }
 }
 
-export { PostUsuarioController }
+export { PostAgenciaController }

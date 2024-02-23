@@ -33,7 +33,23 @@ const updateModeloCaracteristicaSchema = yup.object({
 })
 
 const authSchema = yup.object({
-    email:yup.string().email().required("email é campo obrigatório!"),
-    password:yup.string().required("password é campo obrigatório!"),
+    email: yup.string().email().required("email é campo obrigatório!"),
+    password: yup.string().required("password é campo obrigatório!"),
 })
-export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema,authSchema }
+
+
+const agenciaShema = yup.object({
+    nome: yup.string().required("nome is campo obrigatório"),
+    slogam: yup.string().required("slogam is campo obrigatório"),
+    imagem: yup.string().required("imagem is campo obrigatório"),
+    sobre: yup.string().required("sobre is campo obrigatório"),
+    administradorId: yup.string().required("administradorId is campo obrigatório")
+})
+export {
+    shema,
+    updateUsuarioSchema,
+    updateModeloCaracteristicaSchema,
+    modeloCaracteristicaSchema,
+    authSchema,
+    agenciaShema
+}
