@@ -7,7 +7,7 @@ interface AgenciacreateDto {
     imagem: string;
     sobre: string;
     administradorId: number; 
-    next: NextFunction
+    next?: NextFunction
 }
 interface AgenciaUpdateDto {
     id: number;

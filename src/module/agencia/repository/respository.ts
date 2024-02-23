@@ -5,7 +5,7 @@ import { AgenciaRepositoryTDO, AgenciaUpdateDto, AgenciacreateDto } from "./inte
 class AgenciaRepository implements AgenciaRepositoryTDO {
     constructor() { }
 
-    async create({next, ...data }: AgenciacreateDto): Promise<Agencia> {
+    async create({ ...data }: AgenciacreateDto): Promise<Agencia> {
         
         return await prisma.agencia.create({ data:{
             nome: "string",
