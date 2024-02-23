@@ -20,7 +20,6 @@ function authUser(req:Request, res:Response, next:NextFunction) {
         }
 
         req.body.userId = (decoded as JwtPayload).id
-        console.log(req.body.userId);
         
         next()
     })

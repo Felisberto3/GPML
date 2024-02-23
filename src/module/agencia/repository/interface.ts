@@ -16,6 +16,7 @@ interface AgenciaUpdateDto {
     imagem?: string;
     sobre?: string;
     administradorId?: number;
+    userId?: number;
     next: NextFunction
 }
 interface AgenciaRepositoryTDO {

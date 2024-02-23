@@ -1,12 +1,12 @@
 import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
 import { AgenciaRepository } from "../../repository/respository";
-import { AgenciaUpdateDto } from "module/agencia/repository/interface";
+import { AgenciaUpdateDto } from "../../repository/interface";
 
 class PutAgenciaUseCase {
     constructor(private agenciaRepository: AgenciaRepository) { }
 
-    async execute({ id, administradorId, ...data }: AgenciaUpdateDto) {
+    async execute({ id, userId:administradorId, ...data }: AgenciaUpdateDto) {
         
         const antigaAgencia = await this.agenciaRepository.finByAdminId(administradorId!)
 
