@@ -13,7 +13,7 @@ usuarioRouter.post('/create', async (req: Request, res:Response, next: NextFunct
 usuarioRouter.get('/get/:id', async (req: Request, res:Response, next: NextFunction)=>{
     return await getUsuario.handle(req,res, next)
 })
-usuarioRouter.put('/put/:id', authUser, async (req: Request, res:Response, next: NextFunction)=>{
+usuarioRouter.put('/put', authUser, async (req: Request, res:Response, next: NextFunction)=>{
     return await putUsuario.handle(req,res, next)
 })
 export { usuarioRouter }
