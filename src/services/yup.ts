@@ -31,4 +31,9 @@ const updateModeloCaracteristicaSchema = yup.object({
     sapato: yup.number(),
     modeloId: yup.number()
 })
-export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema }
+
+const authSchema = yup.object({
+    email:yup.string().email().required(),
+    password:yup.string().required(),
+})
+export { shema,updateUsuarioSchema ,updateModeloCaracteristicaSchema,modeloCaracteristicaSchema,authSchema }
