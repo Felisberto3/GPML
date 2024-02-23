@@ -7,7 +7,7 @@
     "start": "nodemon ts-node  src/index.ts", 
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "git": "git add . && git commit -m 'update' "
+    "git": "git add . && git commit -m 'update'  && cls"
   },
   "keywords": [],
   "author": "",
