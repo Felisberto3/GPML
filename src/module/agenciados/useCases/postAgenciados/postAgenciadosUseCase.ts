@@ -8,6 +8,14 @@ class PostAgenciadosUseCase {
 
     async execute({ agencia_id, usuario_id}: createAgenciadosDto) {
         try {
+            const agencias = await this.agenciadosRepository.findByagenciaId(agencia_id)
+
+            const alreadyExist = agencias?.find((agencia) => agencia.usuario_id === usuario_id )
+
+            if (alreadyExist) {
+                throw new ServerError('agenciado já existe', 400)
+            }
+        
          return await  this.agenciadosRepository.create({agencia_id, usuario_id})
  
         } catch (error:any) {
