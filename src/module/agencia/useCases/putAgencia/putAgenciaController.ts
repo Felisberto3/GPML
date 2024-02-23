@@ -1,7 +1,7 @@
 import { ServerError } from "../../../../error/index";
 import { NextFunction, Request, Response } from "express";
 import { PutAgenciaUseCase } from "./putAgenciaUseCase";
-import { updateAgenciaSchema } from "services/yup";
+import { updateAgenciaSchema } from "../../../../services/yup";
 
 class PutAgenciaController {
     constructor(private putAgenciaUseCase: PutAgenciaUseCase) { }

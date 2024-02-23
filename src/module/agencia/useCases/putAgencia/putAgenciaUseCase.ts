@@ -1,4 +1,3 @@
-import { hash } from "bcrypt";
 import { ServerError } from "../../../../error/index";
 import { AgenciaRepository } from "../../repository/respository";
 import { AgenciaUpdateDto } from "../../repository/interface";
@@ -11,7 +10,7 @@ class PutAgenciaUseCase {
         const antigaAgencia = await this.agenciaRepository.finByAdminId(administradorId!)
 
         if (antigaAgencia?.id !== id) {
-            throw new Error('Apenas o proprietario pode mudar esta agencia')
+            throw new ServerError('Apenas o proprietario pode mudar esta agencia', 400)
         }
         
 
