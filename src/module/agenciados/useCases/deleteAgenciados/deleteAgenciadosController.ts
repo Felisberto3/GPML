@@ -6,24 +6,20 @@ class DeleteAgenciadosController {
     constructor(private deleteAgenciadosUseCase: DeleteAgenciadosUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-        const { id } = req.params
-
+        const { id:agenciadosId } = req.params
         const { userId } = req.body
 
-
-        if (!Number(id)) {
+        if (!Number(agenciadosId)) {
             return next(new ServerError('Agenciados id é obrigatório', 400))
         }
 
         try {
-
-            const result = { }
-            return res.status(201).json(req.body)
+            const result = await this.deleteAgenciadosUseCase.execute(Number(agenciadosId), userId)
+            return res.status(201).json(result)
 
         } catch (err: any) {
-            console.log(err);
 
-            return res.status(400).json({ message: "Campos incorrectos" })
+            return res.status(400).json({ message: err.message })
         }
 
 

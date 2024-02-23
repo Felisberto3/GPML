@@ -1,14 +1,26 @@
+import { AgenciaRepository } from "../../../agencia/repository/respository";
 import { ServerError } from "../../../../error/index";
-import { updateAgenciadosDto } from "../../repository/interface";
 import { AgenciadosRepository } from "../../repository/respository";
 
 class DeleteAgenciadosUseCase {
-    constructor(private AgenciadosRepository: AgenciadosRepository) { }
+    constructor(
+        private agenciadosRepository: AgenciadosRepository,
+        private agenciaRepository: AgenciaRepository
+        ) { }
 
-    async execute({ id, next, ...data }: updateAgenciadosDto) {
+    async execute(agenciadosId: number, userId: number) {
         
+        const agencias = await this.agenciaRepository.finByAdminId(userId)
 
-        return await this.AgenciadosRepository.update({ id, next, ...data})
+        const donoDaAgencia = agencias?.find(({administradorId})=> administradorId === userId)
+        if(!donoDaAgencia){
+            throw new ServerError('Apenas administrador da agencia pode deletar', 400)
+        }
+        try {
+            return await this.agenciadosRepository.delete(agenciadosId)
+        } catch (error: any) {
+            throw new ServerError(error.message, 400)
+        }
 
     }
 }

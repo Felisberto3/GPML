@@ -1,6 +1,6 @@
 import { $Enums, Agenciados } from "@prisma/client";
 import { prisma } from "../../../prismaConfig/index";
-import { AgenciadosRepositoryTDO, createAgenciadosDto, updateAgenciadosDto } from "./interface";
+import { AgenciadosRepositoryTDO, createAgenciadosDto } from "./interface";
 
 class AgenciadosRepository implements AgenciadosRepositoryTDO {
     constructor() { }
@@ -23,12 +23,8 @@ class AgenciadosRepository implements AgenciadosRepositoryTDO {
     async findByagenciaId(agencia_id: number): Promise<Agenciados[] | null> {
         return await prisma.agenciados.findMany({ where: { agencia_id }})
     }
-    async update({ id, next, ...data }: updateAgenciadosDto): Promise<boolean> {
-
-        await prisma.agenciados.update({
-            where: { id },
-            data: data
-        })
+    async delete(id: number): Promise<boolean> {
+        await prisma.agenciados.delete({ where: { id }})
         return true
     }
 }
