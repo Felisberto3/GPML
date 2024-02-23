@@ -8,19 +8,18 @@ class PostAgenciaUseCase {
     constructor(private agenciaRepository: AgenciaRepository) { }
 
     async execute({ next, nome, ...data }: AgenciacreateDto) {
+        const agenciaExist = await this.agenciaRepository.findByName(nome);
+
+        if (agenciaExist) {
+            return next(new ServerError("Nome desta agencia já existe ", 401))
+        }
+
         try {
-
-            const agenciaExist = await this.agenciaRepository.findByName(nome);
-
-            if (agenciaExist) {
-                next(new ServerError("Nome desta agencia já existe ", 401))
-                return
-            }
             return await this.agenciaRepository.create({ next, nome, ...data });
 
         } catch (error: any) {
-            next(new ServerError("falha ao criar o Agencia", 400))
-            return
+            return next(new ServerError(error.message, 400))
+            
         }
     }
 }

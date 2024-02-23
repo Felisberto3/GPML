@@ -6,10 +6,15 @@ class AgenciaRepository implements AgenciaRepositoryTDO {
     constructor() { }
 
     async create({next, ...data }: AgenciacreateDto): Promise<Agencia> {
-
-        const Agencia = await prisma.agencia.create({ data })
-
-        return Agencia
+        
+        return await prisma.agencia.create({ data:{
+            nome: "string",
+            slogam: "string",
+            imagem: "string",
+            sobre: "string",
+            administradorId: 2,
+        } })
+        
     }
     
     async findById(id: number | null): Promise<Agencia | Agencia[] |null> {
