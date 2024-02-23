@@ -19,7 +19,7 @@ class DeleteAgenciadosUseCase {
         try {
             return await this.agenciadosRepository.delete(agenciadosId)
         } catch (error: any) {
-            throw new ServerError(error.message, 400)
+            throw new ServerError('Falha ao deletar agenciado', 400)
         }
 
     }
