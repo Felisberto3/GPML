@@ -14,7 +14,11 @@ class PutAgenciaUseCase {
         }
         
 
-        return await this.agenciaRepository.update({ id , ...data})
+        try {
+            return await this.agenciaRepository.update({ id , ...data})
+        } catch (error: any) {
+            throw new ServerError(error.message, 400)
+        }
 
     }
 }

@@ -9,7 +9,7 @@ class PutAgenciaController {
     async handle(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params
 
-        if (!Number(id)) {
+        if (!Number(id)) { 
             return next(new ServerError('Agencia id é obrigatório', 400))
         }
 
@@ -17,7 +17,7 @@ class PutAgenciaController {
         try {
             
             await updateAgenciaSchema.validate(req.body)
-
+            
             const result = await this.putAgenciaUseCase.execute({
                 ...req.body,
                 id: Number(id),
@@ -25,8 +25,6 @@ class PutAgenciaController {
             return res.status(201).json(result)
 
         } catch (err: any) {
-            console.log(err);
-
             return res.status(400).json({ message: err.message })
         }
 

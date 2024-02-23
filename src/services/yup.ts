@@ -50,7 +50,6 @@ const updateAgenciaSchema = yup.object({
     slogam: yup.string(),
     imagem: yup.string(),
     sobre: yup.string(),
-    administradorId: yup.string(),
 })
 
 

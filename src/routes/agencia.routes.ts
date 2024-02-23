@@ -13,7 +13,7 @@ agenciaRouter.post('/create', async (req: Request, res:Response, next: NextFunct
 agenciaRouter.get('/get/:id', async (req: Request, res:Response, next: NextFunction)=>{
     return await getAgencia.handle(req,res, next)
 })
-agenciaRouter.put('/put', authUser, async (req: Request, res:Response, next: NextFunction)=>{
+agenciaRouter.put('/put/:id', authUser, async (req: Request, res:Response, next: NextFunction)=>{
     return await putAgencia.handle(req,res, next)
 })
 export { agenciaRouter }
