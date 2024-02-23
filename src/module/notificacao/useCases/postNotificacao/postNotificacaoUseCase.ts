@@ -10,7 +10,7 @@ class PostNotificacaoUseCase {
         try {
             return await this.notificacaoRepository.create(data)
         } catch (error:any) {
-            throw new ServerError(error.message, 400)
+            throw new ServerError(error, 400)
         }
     }
 }

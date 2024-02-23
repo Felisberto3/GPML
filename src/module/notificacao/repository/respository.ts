@@ -5,8 +5,8 @@ import { NotificacaoRepositoryTDO, createNotificacaoDto } from "./interface";
 class NotificacaoRepository implements NotificacaoRepositoryTDO {
     constructor() { }
 
-    async create({ next, ...data }: createNotificacaoDto): Promise<Notificacao> {
-        return await prisma.notificacao.create({ data })
+    async create({ next, agenciaId: agencia_id,...data }: createNotificacaoDto): Promise<Notificacao> {
+        return await prisma.notificacao.create({ data: { agencia_id, ...data} })
     }
 
     async findById(id: number | null): Promise<Notificacao | Notificacao[] | null> {
