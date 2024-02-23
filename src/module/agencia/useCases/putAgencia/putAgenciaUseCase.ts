@@ -7,13 +7,14 @@ class PutAgenciaUseCase {
 
     async execute({ id, userId:administradorId, ...data }: AgenciaUpdateDto) {
         
-        const antigaAgencia = await this.agenciaRepository.finByAdminId(administradorId!)
-
-        if (antigaAgencia?.id !== id) {
+        const agencias = await this.agenciaRepository.finByAdminId(administradorId!)
+        
+        const result =  agencias?.find(agencia=> agencia.id == id)
+        
+        if (!result) {
             throw new ServerError('Apenas o proprietario pode mudar esta agencia', 400)
         }
         
-
         try {
             return await this.agenciaRepository.update({ id , ...data})
         } catch (error: any) {

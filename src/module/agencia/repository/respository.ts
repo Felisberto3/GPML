@@ -23,8 +23,8 @@ class AgenciaRepository implements AgenciaRepositoryTDO {
         return await prisma.agencia.findUnique({ where: { nome }})
     }
 
-    async finByAdminId(administradorId: number): Promise<Agencia | null>{
-        return await prisma.agencia.findFirst({ where: { administradorId } })
+    async finByAdminId(administradorId: number): Promise<Agencia[] | null>{
+        return await prisma.agencia.findMany({ where: { administradorId } })
     }
 
     async update({ id, userId,...data}: AgenciaUpdateDto): Promise<boolean> {

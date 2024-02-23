@@ -4,6 +4,6 @@ import { DeleteAgenciaUseCase } from "./deleteAgenciaUseCase"
 
 const agenciaRepository = new AgenciaRepository()
 const deleteAgenciaUseCase = new DeleteAgenciaUseCase(agenciaRepository)
-const DeleteAgencia = new DeleteAgenciaController(deleteAgenciaUseCase)
+const deleteAgencia = new DeleteAgenciaController(deleteAgenciaUseCase)
 
-export { DeleteAgencia }
+export { deleteAgencia }

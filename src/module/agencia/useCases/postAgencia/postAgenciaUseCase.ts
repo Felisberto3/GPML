@@ -16,7 +16,7 @@ class PostAgenciaUseCase {
         try {
             return await this.agenciaRepository.create({ nome, ...data });
         } catch (error) {
-            throw new ServerError('Erro ao criar agencia', 4001)
+            throw new ServerError('Erro ao criar agencia', 401)
         }
     }
 }

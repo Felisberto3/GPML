@@ -5,14 +5,24 @@ import { AgenciaUpdateDto } from "../../repository/interface";
 class DeleteAgenciaUseCase {
     constructor(private agenciaRepository: AgenciaRepository) { }
 
-    async execute(id: number, userId:number) {
-        
-        const antigaAgencia = await this.agenciaRepository.findById(id)
+    async execute(id: number, userId: number) {
 
-        // if (antigaAgencia?.administradorId !== id) {👀👀👀👀
-        //     throw new ServerError('Apenas o proprietario pode mudar esta agencia', 400)
-        // }
+        const agencia = await this.agenciaRepository.findById(id)
+
+        if (!agencia) {
+            throw new ServerError('Não existe esta agencia', 400)
+        }
         
+        const agencias = await this.agenciaRepository.finByAdminId(userId)
+
+        const result = agencias?.find(agencia => agencia.id == id)
+
+        if (!result) {
+            throw new ServerError('Apenas o proprietario pode mudar esta agencia', 400)
+        }
+        // if (antigaAgencia?.administradorId !== id) {👀👀👀👀
+        // }
+
 
         try {
             return await this.agenciaRepository.delete(id)
