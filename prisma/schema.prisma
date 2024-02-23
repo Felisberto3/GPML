@@ -59,7 +59,7 @@ model Agenciados {
 
 model Agencia {
   id              Int           @id @default(autoincrement())
-  nome            String
+  nome            String        @unique
   slogam          String
   imagem          String
   sobre           String

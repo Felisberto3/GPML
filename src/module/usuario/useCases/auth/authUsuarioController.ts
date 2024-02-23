@@ -8,10 +8,8 @@ class AuthUsuarioController {
     async handle(req: Request, res: Response, next: NextFunction) {
 
         try {
-            console.log('yayayayayya');
             
             await authSchema.validate(req.body)
-            console.log('yayayayayya');
 
             const result = await this.authUsuarioUseCase.execute({
                 ...req.body,
@@ -21,7 +19,7 @@ class AuthUsuarioController {
 
         } catch (err: any) {
 
-            return res.status(400).json({ message: "Campos incorrectos" })
+            return res.status(400).json({ message: err.message })
         }
 
     }

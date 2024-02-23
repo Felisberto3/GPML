@@ -1,34 +1,32 @@
-import { $Enums, Usuario } from "@prisma/client";
-import { UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto, UsuariocreateUsuarioDto } from "./interface";
+import {  Agencia } from "@prisma/client";
 import { prisma } from "../../../prismaConfig/index";
+import { AgenciaRepositoryTDO, AgenciaUpdateDto, AgenciacreateDto } from "./interface";
 
-class UsuarioRepository implements UsuarioRepositoryTDO {
+class AgenciaRepository implements AgenciaRepositoryTDO {
     constructor() { }
 
-    async create({ email, nomeCompleto, password,tipo, genero, next }: UsuariocreateUsuarioDto): Promise<Usuario> {
+    async create({next, ...data }: AgenciacreateDto): Promise<Agencia> {
 
-        const usuario = await prisma.usuario.create({
-            data: { nomeCompleto, email, password,tipo, genero }
-        })
+        const Agencia = await prisma.agencia.create({ data })
 
-        return usuario
+        return Agencia
     }
     
-    async findById(id: number | null): Promise<Usuario | Usuario[] |null> {
+    async findById(id: number | null): Promise<Agencia | Agencia[] |null> {
 
         if (!id) {
-            return await prisma.usuario.findMany()
+            return await prisma.agencia.findMany()
         }
-        return await prisma.usuario.findFirst({ where: { id } })
+        return await prisma.agencia.findFirst({ where: { id } })
     }
 
-     async findByEmail(email: string): Promise<Usuario | null> {
-        return await prisma.usuario.findUnique({ where: { email }})
+     async findByEmail(nome: string): Promise<Agencia | null> {
+        return await prisma.agencia.findUnique({ where: { nome }})
     }
 
-    async update({ id,next, ...data}: UsuarioUpdateUsuarioDto): Promise<boolean> {
+    async update({ id,next, ...data}: AgenciaUpdateDto): Promise<boolean> {
         
-        await prisma.usuario.update({
+        await prisma.agencia.update({
             where: { id },
             data:  data 
         })
@@ -36,4 +34,4 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
     }
 }
 
-export { UsuarioRepository }
+export { AgenciaRepository }

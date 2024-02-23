@@ -1,29 +1,28 @@
-import { Usuario } from "@prisma/client";
+import { Agencia } from "@prisma/client";
 import { NextFunction } from "express";
 
-interface UsuariocreateUsuarioDto {
-    nomeCompleto: string
-    password: string
-    email: string
-    tipo: 'modelo' | 'fotografo'
-    genero: 'masculino' | 'feminino' 
+interface AgenciacreateDto {
+    nome: string;
+    slogam: string;
+    imagem: string;
+    sobre: string;
+    administradorId: number; 
     next: NextFunction
 }
-interface UsuarioUpdateUsuarioDto {
+interface AgenciaUpdateDto {
     id: number;
-    nomeCompleto?: string;
-    password?: string;
-    email?: string;
-    dataNascimento?: Date | null;
-    tipo?: 'modelo' | 'fotografo'
-    genero?: 'masculino' | 'feminino' 
+    nome?: string;
+    slogam?: string;
+    imagem?: string;
+    sobre?: string;
+    administradorId?: number;
     next: NextFunction
 }
-interface UsuarioRepositoryTDO {
-    create({ email, nomeCompleto, password,tipo,genero, next }: UsuariocreateUsuarioDto): Promise<Usuario>
-    findById(id: number): Promise<Usuario | Usuario[] | null>
-    findByEmail(email: string): Promise<Usuario | null>
-    update(data: UsuarioUpdateUsuarioDto): Promise<boolean>
+interface AgenciaRepositoryTDO {
+    create(data: AgenciacreateDto): Promise<Agencia>
+    findById(id: number): Promise<Agencia | Agencia[] | null>
+    findByEmail(email: string): Promise<Agencia | null>
+    update(data: AgenciaUpdateDto): Promise<boolean>
 }
 
-export { UsuariocreateUsuarioDto, UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto }
+export { AgenciacreateDto, AgenciaRepositoryTDO, AgenciaUpdateDto }
