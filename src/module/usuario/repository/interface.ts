@@ -10,7 +10,7 @@ interface UsuariocreateUsuarioDto {
     next: NextFunction
 }
 interface UsuarioUpdateUsuarioDto {
-    id: number;
+    userId: number;
     nomeCompleto?: string;
     password?: string;
     email?: string;

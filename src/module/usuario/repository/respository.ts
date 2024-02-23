@@ -37,7 +37,7 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
         return await prisma.usuario.findUnique({ where: { email } })
     }
 
-    async update({ id, next, ...data }: UsuarioUpdateUsuarioDto): Promise<boolean> {
+    async update({ userId:id, next, ...data }: UsuarioUpdateUsuarioDto): Promise<boolean> {
 
         await prisma.usuario.update({
             where: { id },

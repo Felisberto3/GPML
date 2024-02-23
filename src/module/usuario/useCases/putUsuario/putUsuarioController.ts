@@ -7,9 +7,9 @@ class PutUsuarioController {
     constructor(private putUsuarioUseCase: PutUsuarioUseCase) { }
 
     async handle(req: Request, res: Response, next: NextFunction) {
-        const { id } = req.params
-
-        if (!Number(id)) {
+        const { userId } = req.body
+        
+        if (!userId) {
             return next(new ServerError('usuario id é obrigatório', 400))
         }
 
@@ -20,13 +20,11 @@ class PutUsuarioController {
 
             const result = await this.putUsuarioUseCase.execute({
                 ...req.body,
-                id: Number(id),
                 next
             })
             return res.status(201).json(result)
 
         } catch (err: any) {
-            console.log(err);
 
             return res.status(400).json({ message: "Campos incorrectos" })
         }

@@ -6,7 +6,7 @@ import { UsuarioRepository } from "../../repository/respository";
 class PutUsuarioUseCase {
     constructor(private usuarioRepository: UsuarioRepository) { }
 
-    async execute({ id, next, ...data }: UsuarioUpdateUsuarioDto) {
+    async execute({  next, ...data }: UsuarioUpdateUsuarioDto) {
         
         const { password} = data
         
@@ -15,7 +15,7 @@ class PutUsuarioUseCase {
             data.password = await hash( password! , 8);
         }
 
-        return await this.usuarioRepository.update({ id, next, ...data})
+        return await this.usuarioRepository.update({ next, ...data})
 
     }
 }
