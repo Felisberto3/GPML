@@ -7,7 +7,7 @@ class PutUsuarioUseCase {
 
     async execute({  next, ...data }: UsuarioUpdateUsuarioDto) {
         
-        const { password} = data
+        const { password } = data
         
         
         if (password) {
