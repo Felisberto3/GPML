@@ -4,6 +4,7 @@ import { getAgencia } from "../module/agencia/useCases/getAgencia"
 import { putAgencia } from "../module/agencia/useCases/putAgencia"
 import { authUser } from "../midleware/authUser"
 import { deleteAgencia } from "../module/agencia/useCases/deleteAgencia"
+import { filterAgencia } from "../module/agencia/useCases/fiterAgencia"
 
 const agenciaRouter = Router()
 
@@ -19,5 +20,9 @@ agenciaRouter.put('/put/:id', authUser, async (req: Request, res:Response, next:
 })
 agenciaRouter.delete('/delete/:id', authUser, async (req: Request, res:Response, next: NextFunction)=>{
     return await deleteAgencia.handle(req,res, next)
+})
+
+agenciaRouter.get('/filter', async (req: Request, res:Response, next: NextFunction)=>{
+    return await filterAgencia.handle(req,res, next)
 })
 export { agenciaRouter }
