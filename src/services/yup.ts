@@ -1,10 +1,11 @@
 import * as yup from 'yup'
 
 const shema = yup.object({
-    nomeCompleto: yup.string().required(),
+    firstName: yup.string().required(),
+    surname: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().required(),
-    tipo: yup.string().required(),
+    status: yup.string().required(),
     genero: yup.string().required()
 })
 
@@ -41,9 +42,8 @@ const authSchema = yup.object({
 const agenciaShema = yup.object({
     nome: yup.string().required("nome is campo obrigatório"),
     slogam: yup.string().required("slogam is campo obrigatório"),
-    imagem: yup.string().required("imagem is campo obrigatório"),
-    sobre: yup.string().required("sobre is campo obrigatório"),
-    administradorId: yup.string().required("administradorId is campo obrigatório")
+    image: yup.string().required("imagem is campo obrigatório"),
+    aboutUs: yup.string().required("aboutUs is campo obrigatório"),
 })
 const updateAgenciaSchema = yup.object({
     nome: yup.string(),

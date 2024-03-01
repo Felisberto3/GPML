@@ -1,28 +1,18 @@
-import { NextFunction, Router, Request, Response } from "express"
-import { postAgencia } from "../module/agencia/useCases/postAgencia"
-import { getAgencia } from "../module/agencia/useCases/getAgencia"
-import { putAgencia } from "../module/agencia/useCases/putAgencia"
-import { authUser } from "../midleware/authUser"
-import { deleteAgencia } from "../module/agencia/useCases/deleteAgencia"
-import { filterAgencia } from "../module/agencia/useCases/fiterAgencia"
+import { Router, Response, Request } from "express";
+
+import { agencia } from "../module/agencia/useCases/create";
+import { authUser } from "../midleware/authUser";
+import { getagencia } from "../module/agencia/useCases/get";
 
 const agenciaRouter = Router()
 
-agenciaRouter.post('/create', async (req: Request, res:Response, next: NextFunction)=>{
-    return await postAgencia.handle(req,res, next)
+agenciaRouter.post('/create',authUser, async (req: Request, res: Response) => {
+    return await agencia.handle(req, res)
 })
 
-agenciaRouter.get('/get/:id', async (req: Request, res:Response, next: NextFunction)=>{
-    return await getAgencia.handle(req,res, next)
-})
-agenciaRouter.put('/put/:id', authUser, async (req: Request, res:Response, next: NextFunction)=>{
-    return await putAgencia.handle(req,res, next)
-})
-agenciaRouter.delete('/delete/:id', authUser, async (req: Request, res:Response, next: NextFunction)=>{
-    return await deleteAgencia.handle(req,res, next)
+agenciaRouter.get('/get/:id', async (req: Request, res: Response) => {
+    return await getagencia.handle(req, res)
 })
 
-agenciaRouter.get('/filter', async (req: Request, res:Response, next: NextFunction)=>{
-    return await filterAgencia.handle(req,res, next)
-})
+
 export { agenciaRouter }

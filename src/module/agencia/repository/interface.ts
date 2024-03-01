@@ -1,30 +1,24 @@
 import { Agencia } from "@prisma/client";
-import { NextFunction } from "express";
 
-interface AgenciacreateDto {
+interface createAgenciaDTO {
     nome: string;
     slogam: string;
-    imagem: string;
-    sobre: string;
-    administradorId: number; 
-    next?: NextFunction
-}
-interface AgenciaUpdateDto {
-    id: number;
-    nome?: string;
-    slogam?: string;
-    imagem?: string;
-    sobre?: string;
-    administradorId?: number;
-    userId?: number;
-    next: NextFunction
-}
-interface AgenciaRepositoryTDO {
-    create(data: AgenciacreateDto): Promise<Agencia>
-    findById(id: number): Promise<Agencia | Agencia[] | null>
-    findByName(email: string): Promise<Agencia | null>
-    update(data: AgenciaUpdateDto): Promise<boolean>
-    delete(id: number): Promise<boolean | null>
+    image: string;
+    aboutUs: string;
+    userId: number
 }
 
-export { AgenciacreateDto, AgenciaRepositoryTDO, AgenciaUpdateDto }
+interface updateAgenciaDTO {
+    id: number;
+    nome: string;
+    slogam: string;
+    image: string;
+    aboutUs: string;
+
+}
+interface agenciaRepositoryDTO {
+    create(data: createAgenciaDTO): Promise<Agencia>
+    get(id: number): Promise<Agencia[] | Agencia | null >
+}
+
+export { agenciaRepositoryDTO, createAgenciaDTO }

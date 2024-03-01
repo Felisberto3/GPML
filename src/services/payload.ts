@@ -3,7 +3,7 @@ import JWT from 'jsonwebtoken'
 function payloadGenerator(id: number, email: string) {
     return JWT.sign({
         id,
-        email
+        email,
     },
         process.env.KEY!,
         {

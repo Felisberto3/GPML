@@ -1,17 +1,14 @@
-import { $Enums, Usuario } from "@prisma/client";
+import { Usuario } from "@prisma/client";
 import { UsuarioRepositoryTDO, UsuarioUpdateUsuarioDto, UsuariocreateUsuarioDto } from "./interface";
 import { prisma } from "../../../prismaConfig/index";
 
 class UsuarioRepository implements UsuarioRepositoryTDO {
     constructor() { }
 
-    async create({ email, nomeCompleto, password, tipo, genero, next }: UsuariocreateUsuarioDto): Promise<Usuario> {
+    async create(data: UsuariocreateUsuarioDto): Promise<Usuario> {
 
-        const usuario = await prisma.usuario.create({
-            data: { nomeCompleto, email, password, tipo, genero }
-        })
+        return await prisma.usuario.create({ data })
 
-        return usuario
     }
 
     async findById(id: number | null): Promise<Usuario | Usuario[] | null> {
@@ -20,35 +17,27 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
             return await prisma.usuario.findMany({
                 include: {
                     modeloCaracteristica: true,
-                    Agencia: true
+                    agencia: true,
+                    Administrator: true,
+                    Post: true
                 }
             })
         }
-        return await prisma.usuario.findFirst({ 
+        return await prisma.usuario.findFirst({
             where: { id },
             include: {
                 modeloCaracteristica: true,
-                Agencia: true
+                agencia: true,
+                Administrator: true,
+                Post: true
             }
         })
     }
 
-    async findByEmail(email: string): Promise<Usuario | null> {
+    async findByEmail(email: string ): Promise<Usuario | null> {
         return await prisma.usuario.findUnique({ 
-            where: { email },
-        include: {
-            Agencia: true,
-            modeloCaracteristica: true
-        } })
-    }
-
-    async update({ userId:id, next, ...data }: UsuarioUpdateUsuarioDto): Promise<boolean> {
-
-        await prisma.usuario.update({
-            where: { id },
-            data: data
+            where: { email }
         })
-        return true
     }
 }
 

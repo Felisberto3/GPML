@@ -13,8 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum tipoUsuario {
-  normal
+enum status {
+  freeLancer
   modelo
   fotografo
 }
@@ -26,17 +26,24 @@ enum tipoGenero {
 
 model Usuario {
   id                   Int                   @id @default(autoincrement())
-  nomeCompleto         String
-  password             String
+  firstName            String?
+  surname              String?
   email                String                @unique
-  dataNascimento       DateTime?
-  genero               tipoGenero
-  tipo                 tipoUsuario
-  imagem               String?
-  Agenciados           Agenciados[]
-  Agencia              Agencia[]
+  password             String
+  status               status?
+  img                  String?
+  aboutMe              String?
+  slogam               String?
+  genero               tipoGenero?
+  bornDate             DateTime?
+  agencia              Agencia?              @relation(fields: [agenciaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  agenciaId            Int?
   modeloCaracteristica ModeloCaracteristica?
   createAt             DateTime              @default(now())
+  updatedAt            DateTime              @default(now()) @updatedAt()
+  Administrator        Administrator[]
+  AgenciaNotification  AgenciaNotification[]
+  Post                 Post[]
 }
 
 model ModeloCaracteristica {
@@ -49,33 +56,45 @@ model ModeloCaracteristica {
   modeloId Int?     @unique
 }
 
-model Agenciados {
-  id         Int      @id @default(autoincrement())
-  usuario    Usuario? @relation(fields: [usuario_id], references: [id])
-  usuario_id Int?
-  agencia    Agencia? @relation(fields: [agencia_id], references: [id])
-  agencia_id Int?
+model Administrator {
+  id        Int      @id @default(autoincrement())
+  usuario   Usuario @relation(fields: [adminId], references: [id])
+  adminId   Int
+  agencia   Agencia @relation(fields: [agenciaId], references: [id])
+  agenciaId Int
 }
 
 model Agencia {
-  id              Int           @id @default(autoincrement())
-  nome            String        @unique
-  slogam          String
-  imagem          String
-  sobre           String
-  usuario         Usuario?      @relation(fields: [administradorId], references: [id])
-  administradorId Int
-  Agenciados      Agenciados[]
-  Notificacao     Notificacao[]
-  createAt        DateTime      @default(now())
+  id                  Int                   @id @default(autoincrement())
+  nome                String                @unique
+  slogam              String
+  image               String
+  aboutUs             String
+  Administrator       Administrator[]
+  createAt            DateTime              @default(now())
+  Usuario             Usuario[]
+  AgenciaNotification AgenciaNotification[]
+  Post                Post[]
 }
 
-model Notificacao {
-  id             Int      @id @default(autoincrement())
-  agencia        Agencia? @relation(fields: [agencia_id], references: [id])
-  agencia_id     Int?
-  descricao      String
-  destinatarioId Int?
-  remitenteId    Int
-  createAt       DateTime @default(now())
+model AgenciaNotification {
+  id        Int      @id @default(autoincrement())
+  descricao String
+  agencia   Agencia  @relation(fields: [agenciaId], references: [id])
+  agenciaId Int
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId Int
+  createAt  DateTime @default(now())
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  content   String
+  title     String
+  img       String?
+  agencia   Agencia? @relation(fields: [agenciaId], references: [id])
+  agenciaId Int?
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+  usuarioId Int?
+  createAt  DateTime @default(now())
 }
