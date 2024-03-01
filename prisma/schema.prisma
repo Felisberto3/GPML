@@ -14,7 +14,8 @@ datasource db {
 }
 
 enum status {
-  freeLancer
+  fotografoFreeLancer
+  modeloFreeLancer
   modelo
   fotografo
 }
@@ -57,7 +58,7 @@ model ModeloCaracteristica {
 }
 
 model Administrator {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   usuario   Usuario @relation(fields: [adminId], references: [id])
   adminId   Int
   agencia   Agencia @relation(fields: [agenciaId], references: [id])

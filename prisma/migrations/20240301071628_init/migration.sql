@@ -35,8 +35,8 @@ CREATE TABLE `ModeloCaracteristica` (
 -- CreateTable
 CREATE TABLE `Administrator` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `adminId` INTEGER NULL,
-    `agenciaId` INTEGER NULL,
+    `adminId` INTEGER NOT NULL,
+    `agenciaId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -85,10 +85,10 @@ ALTER TABLE `Usuario` ADD CONSTRAINT `Usuario_agenciaId_fkey` FOREIGN KEY (`agen
 ALTER TABLE `ModeloCaracteristica` ADD CONSTRAINT `ModeloCaracteristica_modeloId_fkey` FOREIGN KEY (`modeloId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_adminId_fkey` FOREIGN KEY (`adminId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_adminId_fkey` FOREIGN KEY (`adminId`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `AgenciaNotification` ADD CONSTRAINT `AgenciaNotification_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,8 +1,8 @@
 import { Administrator } from "@prisma/client";
 
 interface createAdministratorDto {
-    adminId: number | null;
-    agenciaId: number | null;
+    adminId: number;
+    agenciaId: number;
 }
 
 interface AdministratorRepositoryTDO {

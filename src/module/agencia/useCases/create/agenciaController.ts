@@ -14,7 +14,7 @@ class AgenciaController {
             return res.status(201).json(newAgencia)
 
         } catch (error: any) {
-            return res.status(400).json(error.message)
+            return res.status(400).json({message: error.message})
         }
     }
 }

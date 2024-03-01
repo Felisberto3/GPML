@@ -8,8 +8,11 @@ class AgenciaUseCase {
         private administratorRepository: AdministratorRepository) {}
 
     async execute(data: createAgenciaDTO) {
-        const agencia =  await this.agenciaRepository.create(data) 
-        await this.administratorRepository.create({ adminId: 1, agenciaId: agencia.id})
+        const { userId, ...agenciaProps } = data
+        const agencia =  await this.agenciaRepository.create(agenciaProps) 
+
+        if (userId) 
+            await this.administratorRepository.create({ adminId: userId, agenciaId: agencia.id})
 
         return agencia
     }

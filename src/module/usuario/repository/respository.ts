@@ -39,6 +39,14 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
             where: { email }
         })
     }
+
+    async update(agenciadoId: number, agenciaId: number): Promise<boolean>{
+        await prisma.usuario.update({
+            where: { id: agenciadoId },
+            data: { agenciaId: agenciaId }
+        })
+        return true
+    }
 }
 
 export { UsuarioRepository }

@@ -5,7 +5,7 @@ interface createAgenciaDTO {
     slogam: string;
     image: string;
     aboutUs: string;
-    userId: number
+    userId?: number
 }
 
 interface updateAgenciaDTO {
