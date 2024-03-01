@@ -6,9 +6,7 @@ class PostRepository implements PostRepositoryTDO {
     constructor() { }
 
     async create(data: PostcreateDTO): Promise<Post> {
-
         return await prisma.post.create({ data })
-
     }
 
     async findById(id: number | null): Promise<Post | Post[] | null> {

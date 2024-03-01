@@ -58,10 +58,12 @@ const notificacaoShema = yup.object({
     destinatarioId: yup.number()
 })
 
-const agenciadosShema = yup.object({
-    agencia_id: yup.number().integer("agencia_id deve ser inteiro").required("agencia_id is campo obrigatório"),
-    usuario_id: yup.number().required("usuario_id is campo obrigatório"),
-
+const postShema = yup.object({
+    content: yup.string().required("agencia_id is campo obrigatório"),
+    title: yup.string().required("agencia_id is campo obrigatório"),
+    img: yup.string().required("agencia_id is campo obrigatório"), 
+    agenciaId: yup.number().integer("agencia_id deve ser inteiro"),
+    usuarioId: yup.number().integer("agencia_id deve ser inteiro"),
 })
 
 
@@ -75,5 +77,5 @@ export {
     agenciaShema,
     updateAgenciaSchema,
     notificacaoShema,
-    agenciadosShema
+    postShema
 }

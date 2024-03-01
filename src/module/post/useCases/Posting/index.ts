@@ -1,9 +1,10 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { PostUsuarioController } from "./postUsuarioController"
-import { PostUsuarioUseCase } from "./postUsuarioUseCase"
+import { PostRepository } from "../../repository/respository"
+import { PostingUseCase } from "./PostingUseCase"
+import { PostingController } from "./postingController"
 
-const usuarioRepository = new UsuarioRepository()
-const postUsuarioUseCase = new PostUsuarioUseCase(usuarioRepository)
-const postUsuario = new PostUsuarioController(postUsuarioUseCase)
 
-export { postUsuario }
+const postRepository = new PostRepository()
+const postingUseCase = new PostingUseCase(postRepository)
+const Posting = new PostingController(postingUseCase)
+
+export { Posting }
