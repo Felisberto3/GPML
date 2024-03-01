@@ -6,8 +6,9 @@
 3-[✔]-Quando o usuario(profissionais de moda/membros) se inscrever em uma
      agência, deve fazé-lo como modelo ou fotógrafo ou agencia.
 
-4-[]-Quando o usuario se inscrever em uma agência, perde o título de
+4-[✔]-Quando o usuario se inscrever em uma agência, perde o título de
     free (caso era um usuário free)*
+    
 5-[]-As agências,modelos free e fotografos postam coisas
 
 6-[]-Os posts das agencias podem ser reagidas varias vezes possíveis.

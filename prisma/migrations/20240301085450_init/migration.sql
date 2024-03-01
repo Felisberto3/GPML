@@ -5,7 +5,7 @@ CREATE TABLE `Usuario` (
     `surname` VARCHAR(191) NULL,
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
-    `status` ENUM('fotografoFreeLancer', 'modeloFreeLancer', 'modelo', 'fotografo') NULL,
+    `status` ENUM('fotografoFreeLancer', 'modeloFreeLancer', 'modelo', 'fotografo') NOT NULL,
     `img` VARCHAR(191) NULL,
     `aboutMe` VARCHAR(191) NULL,
     `slogam` VARCHAR(191) NULL,

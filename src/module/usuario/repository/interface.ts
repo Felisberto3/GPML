@@ -6,7 +6,7 @@ interface UsuariocreateUsuarioDto {
     email: string;
     password: string;
     genero: 'masculino' | 'feminino';
-    status:'modelo' | 'fotografo' | 'freeLancer';
+    status:'fotografoFreeLancer'| 'modeloFreeLancer'|'modelo'|'fotografo';
 }
 interface UsuarioUpdateUsuarioDto {
     id: number
@@ -14,7 +14,7 @@ interface UsuarioUpdateUsuarioDto {
     surname?: string;
     email?: string;
     password: string;
-    status:'modelo' | 'fotografo' | 'freeLancer';
+    status:'fotografoFreeLancer'| 'modeloFreeLancer'|'modelo'|'fotografo';
     img: string | null;
     aboutMe: string | null;
     slogam: string | null;
