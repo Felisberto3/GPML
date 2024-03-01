@@ -1,9 +1,9 @@
 1-[✔]-Os usuários(profissionais de moda/membros) podem se cadastrar na aplicação 
     como agencias de moda, fotógrafo, modelo free(não pertence a nenhuma agencia).
 
-2-[]-Usuário pode fazer parte de uma agências apenas.
+2-[✔]-Usuário pode fazer parte de uma agências apenas.
 
-3-[]-Quando o usuario(profissionais de moda/membros) se inscrever em uma
+3-[✔]-Quando o usuario(profissionais de moda/membros) se inscrever em uma
      agência, deve fazé-lo como modelo ou fotógrafo ou agencia.
 
 4-[]-Quando o usuario se inscrever em uma agência, perde o título de
