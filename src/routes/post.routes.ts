@@ -6,22 +6,12 @@ import { upload } from "../midleware/multer";
 
 const postRouter = Router()
 
-postRouter.post('/create',authUser, async (req: Request, res: Response) => {
+postRouter.post('/create',authUser,upload.single('file'), async (req: Request, res: Response) => {
     return await Posting.handle(req, res)
 })
 
-postRouter.post('/upload', upload.single('files'), (req, res) => {
-    // Retorna uma resposta adequada após o upload
-    res.send('Arquivo enviado com sucesso!');
-});
 
-// postRouter.get('/get/:id', async (req: Request, res: Response) => {
-//     return await getpost.handle(req, res)
-// })
 
-// postRouter.put('/create-postdo', async (req: Request, res: Response) => {
-//     return await createpostdo.handle(req, res)
-// })
 
 
 

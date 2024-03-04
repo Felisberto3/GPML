@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        console.log(path.resolve(__dirname, "../upload"));
+        
         cb(null, path.resolve(__dirname, "../upload"))
     },
     filename: (req, file, cb) => {
@@ -24,6 +26,6 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilt
 }
 
 
-const upload = multer({ storage, fileFilter, })
+const upload = multer({ storage, fileFilter })
 
 export { upload }

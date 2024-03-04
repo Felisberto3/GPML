@@ -9,10 +9,10 @@ class PostingController {
         const { userId:usuarioId, email, ...data} = req.body
 
         try {
-            await postShema.validate(data)
-            const newPost = await this.postingUseCase.execute({ usuarioId, ...data}) 
+            // await postShema.validate(data)
+            // const newPost = await this.postingUseCase.execute({ usuarioId, ...data}) 
 
-            return res.status(201).json()
+            return res.status(201).json(data)
         } catch (err: any) {
             return res.status(400).json({ message: err.message })
         }
