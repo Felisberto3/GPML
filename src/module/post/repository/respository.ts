@@ -14,7 +14,7 @@ class PostRepository implements PostRepositoryTDO {
         if (!id) {
             return await prisma.post.findMany()
         }
-        return await prisma.post.findFirst()
+        return await prisma.post.findFirst({ where: { id }})
     }
 
 

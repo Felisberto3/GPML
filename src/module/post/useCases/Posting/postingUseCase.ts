@@ -13,7 +13,7 @@ class PostingUseCase {
             return await this.postingRepository.create(data);
 
         } catch (error: any) {
-            throw new ServerError(error.message, 401)
+            throw new ServerError('Falha ao criar o post', 401)
         }
     }
 }

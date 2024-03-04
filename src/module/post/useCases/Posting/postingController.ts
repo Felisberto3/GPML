@@ -6,13 +6,20 @@ class PostingController {
     constructor(private postingUseCase: PostingUseCase) { }
 
     async handle(req: Request, res: Response) {
-        const { userId:usuarioId, email, ...data} = req.body
-
+        const { userId: usuarioId, email, agenciaId, ...restData } = req.body
+        
+        const data = {
+            usuarioId,
+            img: req.file?.path,
+            agenciaId: Number(agenciaId),
+            ...restData
+        }
+        
         try {
-            // await postShema.validate(data)
-            // const newPost = await this.postingUseCase.execute({ usuarioId, ...data}) 
+            await postShema.validate(data)
+            const newPost = await this.postingUseCase.execute({ usuarioId, ...data })
 
-            return res.status(201).json(data)
+            return res.status(201).json(newPost)
         } catch (err: any) {
             return res.status(400).json({ message: err.message })
         }
