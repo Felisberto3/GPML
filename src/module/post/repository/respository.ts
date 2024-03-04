@@ -17,6 +17,9 @@ class PostRepository implements PostRepositoryTDO {
         return await prisma.post.findFirst({ where: { id }})
     }
 
+    async findOnlyId(id: number) {
+        return await prisma.post.findFirst({ where: { id }})
+    }
 
     async update(agenciadoId: number, agenciaId: number, newStatus: string): Promise<boolean> {
         await prisma.post.update({
