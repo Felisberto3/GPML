@@ -8,13 +8,18 @@ class GetPostImgController {
     async handle(req: Request, res: Response) {
         const { id } = req.params
 
-        if (!Number(id)) {
-            return res.status(200).json({message:"Id deve ser um número"})
+        try {
+            if (!Number(id)) {
+                return res.status(200).json({message:"Id deve ser um número"})
+            }
+    
+            const Post = await this.getPostImgUseCase.execute(Number(id))
+    
+            return res.status(200).sendFile(Post.img!)
+        } catch (error: any) {
+            return res.status(200).json({ message: error.message})
+            
         }
-
-        const Post = await this.getPostImgUseCase.execute(Number(id)) as Post
-
-        return res.status(200).sendFile(Post.img!)
     }
 }
 
