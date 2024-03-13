@@ -9,7 +9,7 @@ interface createNotificationDTO {
 interface notificationRepositoryDTO {
     create(data: createNotificationDTO): Promise<Notification>
     find(): Promise<Notification[]>
-    findById(id: number): Promise<Notification>
+    findById(id: number): Promise<Notification | null>
 }
 
 export { createNotificationDTO,notificationRepositoryDTO }

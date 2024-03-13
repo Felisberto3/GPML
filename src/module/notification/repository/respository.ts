@@ -1,33 +1,17 @@
-import { Post } from "@prisma/client";
-import { prisma } from "../../../prismaConfig/index";
-import { PostRepositoryTDO, PostcreateDTO } from "./interface";
+import { Notification } from "@prisma/client";
+import { createNotificationDTO, notificationRepositoryDTO } from "./interface";
+import { prisma } from "../../../prismaConfig";
 
-class PostRepository implements PostRepositoryTDO {
-    constructor() { }
-
-    async create(data: PostcreateDTO): Promise<Post> {
-        return await prisma.post.create({ data })
+class NotificationRepository implements notificationRepositoryDTO {
+    async create(data: createNotificationDTO): Promise<Notification> {
+        return await prisma.notification.create({ data })
     }
-
-    async findById(id: number | null): Promise<Post | Post[] | null> {
-
-        if (!id) {
-            return await prisma.post.findMany()
-        }
-        return await prisma.post.findFirst({ where: { id }})
+    async find(): Promise<Notification[]> {
+        return await prisma.notification.findMany()
     }
-
-    async findOnlyId(id: number) {
-        return await prisma.post.findFirst({ where: { id }})
-    }
-
-    async update(agenciadoId: number, agenciaId: number, newStatus: string): Promise<boolean> {
-        await prisma.post.update({
-            where: { id: agenciadoId },
-            data: { agenciaId: agenciaId }
-        })
-        return true
+    async findById(id: number): Promise<Notification | null> {
+        return await prisma.notification.findFirst({ where:{ id } })
     }
 }
 
-export { PostRepository }
+export { NotificationRepository }
