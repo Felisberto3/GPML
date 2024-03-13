@@ -55,11 +55,11 @@ CREATE TABLE `Agencia` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `AgenciaNotification` (
+CREATE TABLE `Notification` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `descricao` VARCHAR(191) NOT NULL,
     `agenciaId` INTEGER NOT NULL,
-    `usuarioId` INTEGER NOT NULL,
+    `senderId` INTEGER NOT NULL,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
@@ -91,10 +91,10 @@ ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_adminId_fkey` FOREIGN 
 ALTER TABLE `Administrator` ADD CONSTRAINT `Administrator_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `AgenciaNotification` ADD CONSTRAINT `AgenciaNotification_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Notification` ADD CONSTRAINT `Notification_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `AgenciaNotification` ADD CONSTRAINT `AgenciaNotification_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Notification` ADD CONSTRAINT `Notification_senderId_fkey` FOREIGN KEY (`senderId`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Post` ADD CONSTRAINT `Post_agenciaId_fkey` FOREIGN KEY (`agenciaId`) REFERENCES `Agencia`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

@@ -43,8 +43,8 @@ model Usuario {
   createAt             DateTime              @default(now())
   updatedAt            DateTime              @default(now()) @updatedAt()
   Administrator        Administrator[]
-  AgenciaNotification  AgenciaNotification[]
   Post                 Post[]
+  Notification         Notification[]
 }
 
 model ModeloCaracteristica {
@@ -66,25 +66,25 @@ model Administrator {
 }
 
 model Agencia {
-  id                  Int                   @id @default(autoincrement())
-  nome                String                @unique
-  slogam              String
-  image               String
-  aboutUs             String
-  Administrator       Administrator[]
-  createAt            DateTime              @default(now())
-  Usuario             Usuario[]
-  AgenciaNotification AgenciaNotification[]
-  Post                Post[]
+  id            Int             @id @default(autoincrement())
+  nome          String          @unique
+  slogam        String
+  image         String
+  aboutUs       String
+  Administrator Administrator[]
+  createAt      DateTime        @default(now())
+  Usuario       Usuario[]
+  Post          Post[]
+  Notification  Notification[]
 }
 
-model AgenciaNotification {
+model Notification {
   id        Int      @id @default(autoincrement())
   descricao String
-  agencia   Agencia  @relation(fields: [agenciaId], references: [id])
   agenciaId Int
-  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId Int
+  senderId  Int
+  agencia   Agencia  @relation(fields: [agenciaId], references: [id])
+  usuario   Usuario  @relation(fields: [senderId], references: [id])
   createAt  DateTime @default(now())
 }
 
