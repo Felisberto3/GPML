@@ -1,17 +1,16 @@
-import { ServerError } from "../../../../error/index";
-import { NextFunction, Request, Response } from "express";
-import { GetUsuarioUseCase } from "./getUsuarioUseCase";
+import { Request, Response } from "express";
+import { GetAdministratorUseCase } from "./getUAdministratorUseCase";
 
-class GetUsuarioController {
-    constructor(private getUsuarioUseCase: GetUsuarioUseCase) { }
+class GetAdministratorController {
+    constructor(private getAdministratorUseCase: GetAdministratorUseCase) { }
 
     async handle(req: Request, res: Response) {
         const { id } = req.params
 
-        const usuario = await this.getUsuarioUseCase.execute(Number(id))
+        const Administrator = await this.getAdministratorUseCase.execute(Number(id))
 
-        return res.status(200).json(usuario )
+        return res.status(200).json(Administrator )
     }
 }
 
-export { GetUsuarioController }
+export { GetAdministratorController }

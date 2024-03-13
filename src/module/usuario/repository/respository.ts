@@ -19,7 +19,8 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
                     modeloCaracteristica: true,
                     agencia: true,
                     Administrator: true,
-                    Post: true
+                    Post: true,
+                    Notification: true
                 }
             })
         }
@@ -29,7 +30,8 @@ class UsuarioRepository implements UsuarioRepositoryTDO {
                 modeloCaracteristica: true,
                 agencia: true,
                 Administrator: true,
-                Post: true
+                Post: true,
+                Notification:true
             }
         })
     }

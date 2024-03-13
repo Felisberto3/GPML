@@ -1,30 +1,26 @@
 import { shema } from "../../../../services/yup";
-import { PostUsuarioUseCase } from "./postUsuarioUseCase";
-import {  Request, Response } from "express";
-import { payloadGenerator } from "../../../../services/payload";
-import { Usuario } from "@prisma/client";
+import { Request, Response } from "express";
+import { PostAdministratorUseCase } from "./postAdministratorUseCase";
+import { JwtPayload } from "jsonwebtoken";
 
-class PostUsuarioController {
-    constructor(private postUsuarioUseCase: PostUsuarioUseCase) { }
+class PostAdministratorController {
+    constructor(private postAdministratorUseCase: PostAdministratorUseCase) { }
 
     async handle(req: Request, res: Response) {
-        const data = req.body
+        const { adminId, agenciaId, userId } = req.body 
 
         try {
-            await shema.validate(data)
+            if (Number(adminId) || Number(agenciaId) ) {
+                return res.status(400).json({ message:'corrija os campos enviados, devem ser NUMBER'})
+            }
 
-            const usuario = await this.postUsuarioUseCase.execute(data) as Usuario
+            const resp = await this.postAdministratorUseCase.execute({ adminId, userId, agenciaId})
 
-            const payload = payloadGenerator(usuario.id, usuario.email)
-
-            return res.status(201).json({
-                usuario,
-                payload
-            })
+            return res.status(201).json({ resp })
         } catch (err: any) {
-            return res.status(400).json({message: err.message })
+            return res.status(400).json({ message: err.message })
         }
     }
 }
 
-export { PostUsuarioController }
+export { PostAdministratorController }

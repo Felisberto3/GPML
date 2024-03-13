@@ -1,3 +1,4 @@
+import { postShema } from "../../../../services/yup";
 import { PostingUseCase } from "./PostingUseCase";
 import { Request, Response  } from "express";
 
@@ -7,12 +8,18 @@ class PostingController {
     constructor(private postingUseCase: PostingUseCase) { }
 
     async handle(req: Request, res: Response) {
-        const data = req.body
+        const { userId:usuarioId , ...data1} = req.body
+        const img = req.file?.path
+        const data = {usuarioId,img, ...data1}
         try {
-            return await this.postingUseCase.execute(data);
+            await postShema.validate(data)
+
+            const resp =  await this.postingUseCase.execute(data);
+
+            return res.status(201).json(resp)
 
         } catch (error: any) {
-            return res.status(error.status).json({ message: error.message })
+            return res.status(400).json({ message: error.message })
         }
     }
 }

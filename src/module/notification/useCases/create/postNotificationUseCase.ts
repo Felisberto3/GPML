@@ -7,9 +7,9 @@ class PostNotificationUseCase {
 
     async execute(data: createNotificationDTO ){
         try {
-            await this.notificationRepository.create(data)
-        } catch (error) {
-            throw new ServerError('Falha ao criar notificacao', 401)
+          return  await this.notificationRepository.create(data)
+        } catch (error: any) {
+            throw new ServerError(error.message, 401)
         }
     }
 }

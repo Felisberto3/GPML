@@ -1,9 +1,10 @@
-import { UsuarioRepository } from "../../repository/respository"
-import { GetUsuarioController } from "./getUsuarioController"
-import { GetUsuarioUseCase } from "./getUsuarioUseCase"
+import { AdministratorRepository } from "../../repository/respository"
+import { GetAdministratorController } from "./getAdministratorController"
+import { GetAdministratorUseCase } from "./getUAdministratorUseCase"
 
-const usuarioRepository = new UsuarioRepository()
-const getUsuarioUseCase = new GetUsuarioUseCase(usuarioRepository)
-const getUsuario = new GetUsuarioController(getUsuarioUseCase)
 
-export { getUsuario }
+const administratorRepository = new AdministratorRepository()
+const getAdministratorUseCase = new GetAdministratorUseCase(administratorRepository)
+const getAdministrator = new GetAdministratorController(getAdministratorUseCase)
+
+export { getAdministrator }

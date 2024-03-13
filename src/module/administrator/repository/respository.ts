@@ -17,8 +17,12 @@ class AdministratorRepository implements AdministratorRepositoryTDO {
             return await prisma.administrator.findMany()
         }
         return await prisma.administrator.findFirst({
-            where: { id }
+            where: { id}
         })
+    }
+
+    async findByAdminId(adminId: number) {
+        return await prisma.administrator.findFirst({ where: { adminId }})
     }
 
 }

@@ -13,7 +13,7 @@ class AgenciaRepository implements agenciaRepositoryDTO {
                     Administrator: true,
                     Post: true,
                     Usuario: true,
-                    AgenciaNotification: true
+                    Notification: true
                 }
             })
 
@@ -24,7 +24,7 @@ class AgenciaRepository implements agenciaRepositoryDTO {
                 Administrator: true,
                 Post: true,
                 Usuario: true,
-                AgenciaNotification: true
+                Notification: true
             }
         })
     }

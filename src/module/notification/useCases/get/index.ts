@@ -1,9 +1,9 @@
-import { PostRepository } from '../../../post/repository/respository'
-import { GetPostController } from "./getPostController"
-import { GetPostUseCase } from "./getPostUseCase"
+import { NotificationRepository } from "../../repository/respository"
+import { GetNotificationController } from "./getNotificationController"
+import { GetNotificationUseCase } from "./getNotificationUseCase"
 
-const postRepository = new PostRepository()
-const getPostUseCase = new GetPostUseCase(postRepository)
-const getPost = new GetPostController(getPostUseCase)
+const notificationRepository = new NotificationRepository()
+const getNotificationUseCase = new GetNotificationUseCase(notificationRepository)
+const getNotification = new GetNotificationController(getNotificationUseCase)
 
-export { getPost }
+export { getNotification }

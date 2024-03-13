@@ -53,16 +53,19 @@ const updateAgenciaSchema = yup.object({
 })
 
 const notificacaoShema = yup.object({
-    agenciaId: yup.number().required("agenciaId is campo obrigatório"),
     descricao: yup.string().required("descricao is campo obrigatório"),
-    destinatarioId: yup.number()
+    agenciaId: yup.number().required("agenciaId is campo obrigatório"),
+    senderId: yup.number().required("senderId is campo obrigatório"),
 })
 
 const postShema = yup.object({
     content: yup.string().required("content is campo obrigatório"),
     title: yup.string().required("title is campo obrigatório"),
-    img: yup.string().required("img is campo obrigatório")
+    img: yup.string().required("img is campo obrigatório"),
+    agenciaId: yup.number(),
+    usuarioId: yup.number()
 })
+
 
 
 
