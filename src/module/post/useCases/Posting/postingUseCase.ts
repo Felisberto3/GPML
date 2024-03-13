@@ -9,7 +9,6 @@ class PostingUseCase {
 
     async execute(data: PostcreateDTO) {
         try {
-
             return await this.postingRepository.create(data);
 
         } catch (error: any) {

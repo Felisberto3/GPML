@@ -8,7 +8,7 @@ import { getPostImg } from "../module/post/useCases/getPostImg";
 
 const postRouter = Router()
 
-postRouter.post('/upload',authUser,upload.single('file'), async (req: Request, res: Response) => {
+postRouter.post('/' ,upload.single('file'),authUser, async (req: Request, res: Response) => {
     return await Posting.handle(req, res)
 })
 

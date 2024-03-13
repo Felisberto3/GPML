@@ -9,7 +9,7 @@
 4-[✔]-Quando o usuario se inscrever em uma agência, perde o título de
     free (caso era um usuário free)*
     
-5-[]-As agências,modelos e fotografos postam coisas
+5-[✔]-As agências,modelos e fotografos postam coisas
 
 6-[]-Os posts das agencias podem ser reagidas varias vezes possíveis.
 
@@ -20,9 +20,9 @@
 
 9-[]-Usuário (visitante) não cadastrado n pode reagir./
 
-10-[❌✔]-As agencias, Modelos e fotografos terão um perfil         
+10-[✔]-As agencias, Modelos e fotografos terão um perfil         
 
-11-[]-Cada usuário(membro)pode ver o  trabalho de outrem, tais como: Modelo, fotógrafo e agencias.
+11-[✔]-Cada usuário(membro)pode ver o  trabalho de outrem, tais como: Modelo, fotógrafo e agencias.
 
 12-[]-Todos os usuários teram um historial feito pela aplicação.
      Historial do tipo. Quantas agencias trabalhou, 

@@ -13,8 +13,6 @@ usuarioRouter.post('/auth', async (req: Request, res:Response)=>{
     return await authUsuario.handle(req,res)
 })
 
-
-
 usuarioRouter.get('/get/:id', async (req: Request, res:Response)=>{
     return await getUsuario.handle(req,res)
 })
