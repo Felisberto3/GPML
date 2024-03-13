@@ -1,0 +1,15 @@
+import { Notification } from "@prisma/client";
+
+interface createNotificationDTO {
+    descricao: string;
+    agenciaId: number;
+    senderId: number;
+}
+
+interface notificationRepositoryDTO {
+    create(data: createNotificationDTO): Promise<Notification>
+    find(): Promise<Notification[]>
+    findById(id: number): Promise<Notification>
+}
+
+export { createNotificationDTO,notificationRepositoryDTO }
