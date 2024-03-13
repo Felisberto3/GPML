@@ -10,7 +10,7 @@ class PostAdministratorController {
         const { adminId, agenciaId, userId } = req.body 
 
         try {
-            if (Number(adminId) || Number(agenciaId) ) {
+            if (!Number(adminId) || !Number(agenciaId) ) {
                 return res.status(400).json({ message:'corrija os campos enviados, devem ser NUMBER'})
             }
 
