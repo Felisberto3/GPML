@@ -1,5 +1,5 @@
 import { postShema } from "../../../../services/yup";
-import { PostingUseCase } from "./PostingUseCase";
+import { PostingUseCase } from "./postingUseCase";
 import { Request, Response  } from "express";
 
 

@@ -1,5 +1,5 @@
 import { PostRepository } from "../../repository/respository"
-import { PostingUseCase } from "./PostingUseCase"
+import { PostingUseCase } from "./postingUseCase"
 import { PostingController } from "./postingController"
 
 

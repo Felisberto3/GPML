@@ -7,6 +7,9 @@ import 'express-async-errors'
 const app = express()
 
 app.use(cors())
+app.use(cors({
+    origin: 'http://192.168.43.222:8081' // Domínio do seu aplicativo React Native
+  }));
 app.use(express.json())
 app.use(express.static('./upload'))
 
