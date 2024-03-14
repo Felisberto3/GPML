@@ -6,15 +6,21 @@ class AgenciaController {
     constructor(private agenciaUseCase: AgenciaUseCase) { }
 
     async handle(req: Request, res: Response) {
-        const { email, ...data} = req.body
+        const { email, ...data } = req.body
 
         try {
             agenciaShema.validate(data)
-            const newAgencia = await this.agenciaUseCase.execute(data)
+
+            if (!req.file) {
+                return res.status(400).json({ message: "O campo image é obrigatório" })
+            }
+
+            const image = req.file?.path
+            const newAgencia = await this.agenciaUseCase.execute({image,...data})
             return res.status(201).json(newAgencia)
 
         } catch (error: any) {
-            return res.status(400).json({message: error.message})
+            return res.status(400).json({ message: error.message })
         }
     }
 }

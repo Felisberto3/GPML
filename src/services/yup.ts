@@ -42,8 +42,7 @@ const authSchema = yup.object({
 const agenciaShema = yup.object({
     nome: yup.string().required("nome is campo obrigatório"),
     slogam: yup.string().required("slogam is campo obrigatório"),
-    image: yup.string().required("imagem is campo obrigatório"),
-    aboutUs: yup.string().required("aboutUs is campo obrigatório"),
+    aboutUs: yup.string().required("aboutUs is campo obrigatório")
 })
 const updateAgenciaSchema = yup.object({
     nome: yup.string(),
